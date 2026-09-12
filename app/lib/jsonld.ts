@@ -48,7 +48,6 @@ export function buildJsonLd() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: BUILDER.name,
-    alternateName: `Sandeep "${BUILDER.nickname}" Tiwari`,
     jobTitle: "AI automation builder",
     description: `Builder of ${PRODUCT_NAME}, a capstone project for the ${BUILDER.course}.`,
     url: SITE_URL,

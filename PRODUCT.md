@@ -8,9 +8,9 @@ Paste this whole file into Claude Code and ask it to build the site.
 
 A single-page Next.js site that showcases a working AI Business OS built for **Sakhiya Skin Clinic, Surat** — a real dermatology clinic. The site is both a live product (working AI assistant + working lead form) and a capstone showcase (architecture, evidence, honest failures).
 
-**Built by:** Sandeep "Sujit" Tiwari
+**Built by:** Sandeep Tiwari
 **Course:** WsCube Tech Professional Certification in AI (PCAI), Cohort 1
-**Mentor:** Nabin sir
+**Mentor:** Navin sir
 
 ### Honesty requirement — non-negotiable
 
@@ -248,7 +248,7 @@ Frame as estimates from the build, not as claims of measured clinic outcomes. La
 n8n · Gemini 3.6 Flash · ElevenLabs Agents · Google Sheets · Gmail · Coefficient · Claude Code · GitHub · Vercel
 
 ### 4.16 Acknowledgement
-A short, sincere section thanking **Nabin sir** and WsCube Tech. Include this line:
+A short, sincere section thanking **Navin sir** and WsCube Tech. Include this line:
 
 > Sir, aapne hame itna kabil banaya ki hum ek complete AI Business OS zero se bana sake — AURA se ENGINE tak, aur ab INFINITY. Dhanyavaad.
 

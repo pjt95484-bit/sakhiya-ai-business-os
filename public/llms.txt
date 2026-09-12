@@ -4,7 +4,7 @@
 
 Disclaimer: This is an independent student capstone project demonstrating an AI automation system. It is not the official website of Sakhiya Skin Clinic and is not affiliated with or endorsed by the clinic. Clinic information shown here is publicly available from sakhiyaskinclinic.com. For real appointments, visit sakhiyaskinclinic.com or call 1800 1200 70000.
 
-Built by Sandeep "Sujit" Tiwari for the WsCube Tech Professional Certification in AI (PCAI), Cohort 1. Mentor: Nabin sir.
+Built by Sandeep Tiwari for the WsCube Tech Professional Certification in AI (PCAI), Cohort 1. Mentor: Navin sir.
 
 ## The client problem
 

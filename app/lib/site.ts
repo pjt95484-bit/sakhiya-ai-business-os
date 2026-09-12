@@ -28,9 +28,8 @@ export const DISCLAIMER =
 
 export const BUILDER = {
   name: "Sandeep Tiwari",
-  nickname: "Sujit",
   course: "WsCube Tech Professional Certification in AI (PCAI), Cohort 1",
-  mentor: "Nabin sir",
+  mentor: "Navin sir",
   org: "WsCube Tech",
 };
 

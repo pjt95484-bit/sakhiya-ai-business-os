@@ -22,7 +22,7 @@ export function Acknowledgement() {
             </p>
           </blockquote>
           <p className="mt-6 text-sm text-ink-mute">
-            — Sandeep &ldquo;{BUILDER.nickname}&rdquo; Tiwari, {BUILDER.course}
+            — {BUILDER.name}, {BUILDER.course}
           </p>
         </div>
       </div>

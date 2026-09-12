@@ -4,9 +4,9 @@
 
 Product: Sakhiya AI Business OS
 Subtitle: Clinic Growth OS — built for Sakhiya Skin Clinic, Surat
-Built by: Sandeep "Sujit" Tiwari
+Built by: Sandeep Tiwari
 Course: WsCube Tech Professional Certification in AI (PCAI), Cohort 1
-Mentor: Nabin sir
+Mentor: Navin sir
 Site language: English. The product itself handles Gujarati, Hindi/Hinglish and English.
 
 ## A 4.9-star clinic with a scheduling problem
@@ -195,7 +195,7 @@ Seven failures are logged publicly on this site with their fixes. The most impor
 
 ## 14 — Acknowledgement
 
-Thank you to Nabin sir and WsCube Tech.
+Thank you to Navin sir and WsCube Tech.
 
 "Sir, aapne hame itna kabil banaya ki hum ek complete AI Business OS zero se bana sake — AURA se ENGINE tak, aur ab INFINITY. Dhanyavaad."
 
@@ -206,4 +206,4 @@ This is an independent student capstone project demonstrating an AI automation s
 Official clinic website: https://sakhiyaskinclinic.com
 Toll free: 1800 1200 70000
 WhatsApp: +91 9875147554
-Built by Sandeep "Sujit" Tiwari · WsCube Tech PCAI Cohort 1 · Mentor: Nabin sir
+Built by Sandeep Tiwari · WsCube Tech PCAI Cohort 1 · Mentor: Navin sir

@@ -50,7 +50,7 @@ export function Footer() {
 
         <div className="mt-10 flex flex-col gap-2 border-t border-line pt-6 text-xs text-ink-mute sm:flex-row sm:items-center sm:justify-between">
           <p>
-            Built by Sandeep &ldquo;{BUILDER.nickname}&rdquo; Tiwari · {BUILDER.course} · Mentor:{" "}
+            Built by {BUILDER.name} · {BUILDER.course} · Mentor:{" "}
             {BUILDER.mentor}
           </p>
           <p>
