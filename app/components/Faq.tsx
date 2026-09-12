@@ -14,7 +14,7 @@ export function Faq() {
           id="faq-title"
           title="Straight answers to the questions people ask about this build."
         />
-        <div className="mt-10 max-w-3xl divide-y divide-edge border-y border-edge">
+        <div className="section-body max-w-measure divide-y divide-edge border-y border-edge">
           {FAQ.map((item) => (
             <details key={item.q} className="group py-4">
               <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-left font-medium text-copy [&::-webkit-details-marker]:hidden">
@@ -32,7 +32,7 @@ export function Faq() {
                   −
                 </span>
               </summary>
-              <p className="mt-3 max-w-prose text-sm leading-relaxed text-copy">{item.a}</p>
+              <p className="mt-3 max-w-measure text-sm leading-relaxed text-copy">{item.a}</p>
             </details>
           ))}
         </div>

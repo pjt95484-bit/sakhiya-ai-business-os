@@ -12,7 +12,7 @@ export function Impact() {
           lede="These are estimates from how the build works, not measured clinic outcomes. The system has not run inside Sakhiya Skin Clinic's operations."
         />
 
-        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="section-body grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {IMPACT.map((item, i) => (
             <li key={item} className="card">
               <span className="font-mono text-xs text-neon">{String(i + 1).padStart(2, "0")}</span>

@@ -29,9 +29,9 @@ export function Agents() {
           lede="Three Gemini 3.6 Flash agents live inside n8n. None of them talks to a patient directly — they read, score, draft and flag, and a person or a code rule decides what happens next."
         />
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+        <div className="section-body grid gap-5 lg:grid-cols-3">
           {AGENTS.map((agent) => (
-            <article key={agent.name} id={IDS[agent.name]} className="card scroll-mt-28">
+            <article key={agent.name} id={IDS[agent.name]} className="card">
               <h3 className="text-xl">{agent.name}</h3>
               <ol className="mt-5 space-y-4">
                 {STEPS.map(([key, label], i) => (

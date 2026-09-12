@@ -10,7 +10,7 @@ export function Footer() {
             <p
               role="note"
               aria-label="Project disclaimer"
-              className="mt-3 max-w-prose text-sm leading-relaxed text-copy"
+              className="mt-3 max-w-measure text-sm leading-relaxed text-copy"
             >
               {DISCLAIMER}
             </p>

@@ -51,7 +51,7 @@ export function AssistantDemo() {
 
         <div
           id="assistant"
-          className="mt-12 grid gap-8 scroll-mt-28 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"
+          className="section-body grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"
         >
           <div>
             <h3 className="text-xl">Three prompts to try</h3>

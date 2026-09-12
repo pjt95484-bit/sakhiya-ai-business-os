@@ -18,8 +18,8 @@ export function Problem() {
           }
         />
 
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
-          <article className="card flex flex-col">
+        <div className="section-body grid gap-5 md:grid-cols-3">
+          <article className="card">
             <p className="kicker">Wait time</p>
             <h3 className="mt-2 text-xl">An 11:30 appointment, seen after an hour</h3>
             <blockquote className="mt-4 border-l-2 border-neon pl-4 text-copy">
@@ -29,23 +29,24 @@ export function Problem() {
                 while staff filmed a promotional reel.
               </p>
             </blockquote>
-            <p className="mt-4 text-xs text-copy-muted">
+            <p className="card-foot text-xs text-copy-muted">
               Paraphrased and briefly quoted from a publicly posted Google review of the Vesu
               centre. Not verified independently by this project.
             </p>
           </article>
 
-          <article className="card flex flex-col">
+          <article className="card">
             <p className="kicker">Language</p>
             <h3 className="mt-2 text-xl">Gujarati, typed in Roman letters</h3>
             <p className="mt-4 text-copy">
-              Surat patients write <span className="mono">mane laser karvanu chhe</span>. Most
-              systems read that as Hindi and reply in the wrong language. The patient notices
+              Surat patients write{" "}
+              <span className="font-mono text-[0.92em] text-neon">mane laser karvanu chhe</span>.
+              Most systems read that as Hindi and reply in the wrong language. The patient notices
               immediately.
             </p>
           </article>
 
-          <article className="card flex flex-col">
+          <article className="card">
             <p className="kicker">After hours</p>
             <h3 className="mt-2 text-xl">Enquiries arrive at 11 PM</h3>
             <p className="mt-4 text-copy">

@@ -16,7 +16,7 @@ export function Evidence() {
           lede="These are actual execution numbers from the workflow's run history. Nothing here is projected. Run #43 is included on purpose: a refusal is a result."
         />
 
-        <div className="mt-12 overflow-x-auto rounded-xl border border-edge bg-surface">
+        <div className="section-body table-wrap">
           <table className="table-evidence w-full min-w-[44rem]">
             <caption className="sr-only">Execution log of real n8n runs and their results</caption>
             <thead>

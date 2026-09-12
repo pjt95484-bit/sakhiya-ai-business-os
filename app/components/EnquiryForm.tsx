@@ -198,7 +198,7 @@ export function EnquiryForm() {
           lede="This form posts to the live n8n workflow. A Gemini agent reads your message, scores it 0–100, and detects language and script from what you typed — not from the dropdown. Expect a 20–40 second wait."
         />
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+        <div className="section-body grid gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
           <form
             onSubmit={onSubmit}
             className="card space-y-5"
@@ -328,7 +328,7 @@ export function EnquiryForm() {
             </p>
           </form>
 
-          <div ref={resultRef} className="scroll-mt-28" aria-live="polite">
+          <div ref={resultRef} aria-live="polite">
             {status === "idle" ? (
               <div className="card h-full border-dashed">
                 <p className="kicker">What comes back</p>

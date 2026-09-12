@@ -36,20 +36,18 @@ export function CoreJobs() {
           id="jobs-title"
           title="One system, four jobs a clinic front desk does every day."
         />
-        <ol className="mt-12 grid gap-px overflow-hidden rounded-xl border border-edge bg-edge sm:grid-cols-2">
+        {/* Part B5 — each cell is a real panel: surface fill plus an edge border. */}
+        <ol className="section-body grid gap-5 sm:grid-cols-2">
           {JOBS.map((job) => (
-            <li key={job.n} className="bg-base p-6 sm:p-8">
-              <article>
-                <p className="text-2xl text-neon">{job.n}</p>
-                <h3 className="mt-3 text-xl">{job.title}</h3>
-                <p className="mt-3 text-copy">{job.body}</p>
-                <a
-                  href={job.href}
-                  className="mt-3 inline-block py-1 text-sm font-medium text-neon underline underline-offset-4 hover:text-copy"
-                >
+            <li key={job.n} className="card card-hover">
+              <p className="font-mono text-sm text-neon">{job.n}</p>
+              <h3 className="mt-3 text-xl">{job.title}</h3>
+              <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-copy-muted">{job.body}</p>
+              <div className="card-foot">
+                <a href={job.href} className="link-accent inline-block py-1 text-sm font-medium">
                   See how it runs
                 </a>
-              </article>
+              </div>
             </li>
           ))}
         </ol>

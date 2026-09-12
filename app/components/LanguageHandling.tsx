@@ -16,7 +16,7 @@ export function LanguageHandling() {
           lede="A Surat patient can write Gujarati in Gujarati letters or in Roman letters. Most systems collapse both into “Hindi” and reply wrong. This one detects the language first, the script second, and replies in the same pair."
         />
 
-        <div className="mt-12 overflow-x-auto rounded-xl border border-edge bg-surface">
+        <div className="section-body table-wrap">
           <table className="table-evidence w-full min-w-[40rem]">
             <caption className="sr-only">
               How the system maps what a patient types to a language, a script and a reply
@@ -53,7 +53,7 @@ export function LanguageHandling() {
               What the patient actually typed beats whatever they selected in a dropdown.
             </p>
           </div>
-          <p className="max-w-prose text-sm leading-relaxed text-copy">
+          <p className="max-w-measure text-sm leading-relaxed text-copy">
             In live tests the dropdown said English and the message was Roman-script Gujarati. The
             system followed the message: execution run #32 scored it 90, marked it Hot, and detected
             Gujarati / Roman with the evidence &ldquo;mane, karvani chhe&rdquo;. The staff alert

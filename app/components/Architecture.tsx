@@ -269,7 +269,7 @@ export function Architecture() {
             className="mx-auto w-full max-w-[21rem] sm:hidden"
             titleId="arch-narrow"
           />
-          <figcaption className="mx-auto mt-6 max-w-prose text-center text-xs text-copy-muted">
+          <figcaption className="mx-auto mt-6 max-w-measure text-center text-xs text-copy-muted">
             Green nodes are the ones that make decisions. Everything else records, alerts or waits
             for a human. Select a node to jump to its description.
           </figcaption>

@@ -31,7 +31,7 @@ export function Safety() {
           lede="A dermatology clinic is a medical business. The assistant is a receptionist, not a doctor, and the rules below keep it there. Each rule lives in the system prompt, in the platform guardrails and in the workflow code."
         />
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+        <div className="section-body grid gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
           <ol className="divide-y divide-edge rounded-xl border border-edge bg-surface">
             {SAFETY_RULES.map((rule, i) => (
               <li key={rule} className="grid grid-cols-[3rem_1fr] gap-3 px-5 py-4">

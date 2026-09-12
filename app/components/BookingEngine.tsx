@@ -11,7 +11,7 @@ export function BookingEngine() {
           lede="Staff confirm. Confirming without real access to the clinic's calendar would recreate the exact wait-time complaint this build exists to fix — a patient told 11:30 who is then made to wait."
         />
 
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
+        <div className="section-body grid gap-5 md:grid-cols-2">
           <article className="card">
             <p className="kicker">Outcome 1 · Slot open</p>
             <h3 className="mt-2 text-xl">Seat held, reference returned</h3>
@@ -53,7 +53,7 @@ export function BookingEngine() {
           </article>
         </div>
 
-        <p className="mt-8 max-w-prose text-sm leading-relaxed text-copy">
+        <p className="mt-8 max-w-measure text-sm leading-relaxed text-copy">
           A third path exists and matters as much: if name or phone is missing, the engine refuses
           and the calendar is untouched (run #43). Slot words like &ldquo;evening&rdquo; are mapped
           to a slot in code, not by the model (run #47).
