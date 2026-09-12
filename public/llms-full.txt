@@ -1,0 +1,209 @@
+# Sakhiya AI Business OS — full page content
+
+> Disclaimer: This is an independent student capstone project demonstrating an AI automation system. It is not the official website of Sakhiya Skin Clinic and is not affiliated with or endorsed by the clinic. Clinic information shown here is publicly available from sakhiyaskinclinic.com. For real appointments, visit sakhiyaskinclinic.com or call 1800 1200 70000.
+
+Product: Sakhiya AI Business OS
+Subtitle: Clinic Growth OS — built for Sakhiya Skin Clinic, Surat
+Built by: Sandeep "Sujit" Tiwari
+Course: WsCube Tech Professional Certification in AI (PCAI), Cohort 1
+Mentor: Nabin sir
+Site language: English. The product itself handles Gujarati, Hindi/Hinglish and English.
+
+## A 4.9-star clinic with a scheduling problem
+
+The Sakhiya AI Business OS captures enquiries in the patient's own language, holds a real slot, and tells the team who to call first.
+
+Verified clinic facts (public, from sakhiyaskinclinic.com and Google):
+- Founder: Dr. Jagdish Sakhiya
+- Experience: 27+ years
+- Certification: ISO 9001:2015
+- Scale: 40+ centres across Gujarat, Maharashtra, Delhi, Rajasthan, Madhya Pradesh
+- Vesu centre: 205, 2nd floor, Western Vesu Point, near SD Jain Modern School, Vesu Main Road, Surat 395007
+- Hours: Monday to Saturday, 10:00 AM – 7:00 PM (closed Sunday)
+- Toll free: 1800 1200 70000
+- WhatsApp: +91 9875147554
+- Rating: 4.9 stars, ~3,970 Google reviews
+- Their five listed patient concerns: Acne / Pimple · Dark Circles · Dull, Dry & Pigmented Skin · Hair Fall (Alopecia) · Unwanted Hair
+- Treatment categories: Skin · Laser · Anti-Ageing · Hair · Dermato Surgery · Plastic Surgery
+
+## 01 — The problem
+
+Sakhiya Skin Clinic does not have a lead problem. It has a slot problem. With 4.9 stars across roughly 3,970 Google reviews, demand is not the constraint. Reading the reviews surfaced a different pain: appointment and slot management. Every design decision in this system traces back to that.
+
+1. Wait time — A publicly posted Google review of the Vesu branch describes an 11:30 appointment where the patient waited over an hour while staff filmed a promotional reel, and calls the branch "very unprofessional... very badly managed."
+2. Language — Surat patients write Gujarati in Roman letters ("mane laser karvanu chhe"). Most systems read that as Hindi and reply wrong.
+3. After hours — Enquiries arrive at 11 PM when the clinic is shut.
+
+## 02 — The four core jobs
+
+1. Marketing & Content — A weekly brief becomes five ad variations written for a Surat buyer persona, each self-checked against India healthcare ad rules and parked for human approval.
+2. Lead Capture & Sales — Every enquiry is logged, scored 0–100, tagged with its language and script, and routed. Hot leads trigger an instant alert.
+3. Patient Support & Follow-up — Sessions due within three days get a reminder each morning, written in the patient's own language, with a flag for anything a human should read first.
+4. Clinic Intelligence — Everything lands in Google Sheets and a live Coefficient dashboard.
+
+## 03 — Architecture
+
+Instagram ad / Website
+→ AI Assistant (ElevenLabs, 24/7)
+→ webhook
+→ n8n backbone
+→ Lead Agent · Follow-up Agent · Ad Creative Agent · Booking Engine
+→ Slack/Email alert · Repeat visit · Ads for approval
+→ Live dashboard (Coefficient + Google Sheets)
+
+- AI Assistant: An ElevenLabs conversational agent that answers by voice or chat at any hour, in Gujarati, Hinglish or English. It collects name, phone, concern and preferred time, then calls n8n over a webhook. It holds slots; it never confirms them.
+- n8n backbone: Every enquiry, booking request, morning reminder run and weekly ad brief passes through n8n, which validates inputs in code before any agent or calendar is touched.
+- Booking Engine: Holds a seat and returns a reference like SSC-BK-06485281. If the slot is full it returns up to three genuinely open alternatives from the live schedule. Slot and centre mapping happens in code, not in the prompt.
+
+## 04 — Live demo: assistant
+
+The published ElevenLabs agent (agent id agent_2801m2ab2k9yezktg6djp7c0pebm) is embedded on the page. Direct link: https://elevenlabs.io/app/talk-to?agent_id=agent_2801m2ab2k9yezktg6djp7c0pebm
+
+Suggested test prompts:
+- mane unwanted hair ni laser treatment karvani chhe
+- laser hair removal ka kitna charge hai?
+- kya ye treatment safe hai?
+
+The last two are restriction tests — the assistant will refuse to quote a price or call anything safe.
+
+Assistant's own numbers: 9 conversations, 100% success rate.
+
+## 05 — Live demo: enquiry form
+
+A working form POSTs JSON to the live n8n webhook (https://pjt90112.app.n8n.cloud/webhook/sakhiya-lead) with keys patient_name, phone, concern, centre, visit_timeline, time_slot, language, message. The message field is sent exactly as typed — not trimmed, translated, autocorrected or normalised — because the n8n agent detects the patient's language from that raw text. A Gemini agent runs, so a response takes 20–40 seconds. The form sends data to a live demo workflow; use test details, not real patient information.
+
+## 06 — The three agents (Plan → Act → Check → Improve)
+
+Lead Qualification
+- Plan: Read the enquiry and the patient's own words
+- Act: Gemini scores 0–100, detects language and script
+- Check: Is it Hot (70+)?
+- Improve: Hot → instant alert naming the language to speak; else nurture queue
+
+Follow-up & Reminder
+- Plan: Every morning Mon–Sat, find sessions due within 3 days
+- Act: Write the reminder in the patient's own language and script
+- Check: needs_human_review flag
+- Improve: Write status back so nobody is reminded twice
+
+Ad Creative
+- Plan: Turn the weekly brief into a Surat-specific buyer persona
+- Act: Write five ad variations, each from a different angle
+- Check: Self-check against India healthcare ad rules
+- Improve: Rewrite any failing ad, save all to a sheet marked Awaiting Approval
+
+## 07 — The booking engine
+
+The system holds a slot and returns a reference. It never says "confirmed." Staff confirm. Confirming without real access to the clinic's calendar would recreate the exact wait-time complaint this build exists to fix.
+
+- Slot open → seat held, reference like SSC-BK-06485281, patient told the team will call
+- Slot full → up to three genuinely open alternatives, read from the live schedule
+- Name or phone missing → refused, calendar untouched (run #43)
+- Slot words like "evening" → mapped to Evening (4 PM – 7 PM) in code (run #47)
+
+## 08 — Language handling
+
+Language and script are two separate decisions.
+
+| Patient types | Language | Script | Reply |
+|---|---|---|---|
+| મારે લેસર કરાવવું છે | Gujarati | Gujarati | Gujarati script |
+| mane laser karvanu chhe | Gujarati | Roman | Roman-script Gujarati |
+| mujhe laser karvana hai | Hinglish | Roman | Hinglish |
+| I want laser treatment | English | Roman | English |
+
+Rule: what the patient actually typed beats whatever they selected in a dropdown. In live tests the dropdown said English and the message was Roman-script Gujarati; the system followed the message.
+
+## 09 — Evidence: real n8n execution log
+
+| Run | What was tested | Result |
+|---|---|---|
+| #32 | Roman-script Gujarati enquiry, dropdown said English | Score 90, Hot, detected Gujarati / Roman, evidence: "mane, karvani chhe" |
+| #34 | Second Gujarati enquiry, different concern | Score 90, Hot, detected Gujarati / Roman |
+| #24 | Booking with an open slot | Held, reference SSC-BK-13664941 |
+| #25 | Booking with a full slot | Returned three genuinely open alternatives |
+| #35 | Weekly ad brief | Five distinct Gujarati/Roman ad variations, all compliance-passed |
+| #36 | Daily follow-up run, two patients | One reminder in Roman-script Gujarati, one in Hinglish, single run |
+| #43 | Booking with empty name and phone | Refused. Calendar untouched, returned what was missing |
+| #47 | Booking with the words "evening slot" | Mapped correctly to Evening (4 PM – 7 PM) |
+
+Assistant: 9 conversations, 100% success rate.
+
+## 10 — Safety rules
+
+Enforced in three layers: system prompt, platform guardrails, and workflow code.
+
+1. Never gives medical advice, diagnosis, treatment plan or recovery timeline
+2. Never states, estimates or hints at any price, package or discount
+3. Never says a treatment is safe, painless, effective, guaranteed or permanent
+4. Never names the doctor who will treat a patient — 40+ centres, availability is unknown to the system
+5. Never compares Sakhiya with another clinic
+6. Never writes aftercare instructions — those come only from the treating doctor
+7. Never confirms a booking — only holds it
+8. Complaints about waiting get an apology with no excuse, then immediate escalation
+
+The medical/legal content guardrail was deliberately left off, because switching it on would block the clinic's own subject matter. Turning a safety toggle on without reading it would have broken the product.
+
+## 11 — What broke: honest failure log
+
+| # | What broke | Fix |
+|---|---|---|
+| 1 | Google Sheets append failed — manual column mapping needs a column schema | Built the row in a Set node, let Sheets auto-map |
+| 2 | n8n Gateway Credits returned nodeNotCovered | Platform-side bug reported by other users; switched to a personal API key |
+| 3 | gemini-2.5-flash closed to new API keys | Moved to gemini-3.6-flash |
+| 4 | The model stuffed a whole drafted reply into the reply_script field | Replaced the example schema with a strict JSON schema using enums |
+| 5 | Assistant called the booking tool before it had name and phone | Added a validation gate in n8n — the calendar is untouched until all details exist |
+| 6 | Patient asked for evening, system booked afternoon | Moved slot mapping out of the prompt and into code |
+| 7 | The enum meant to prevent #6 was itself causing it — the model had to pick a fixed value and picked wrong | Removed the enum on slot and centre; the agent now sends the patient's raw words and code converts them |
+
+Lesson: A prompt is a request. Code is a rule. The slot mapping was written into the prompt three times and ignored three times. Written once in code, it has not failed since. Anything that actually matters belongs in code, not in a prompt.
+
+## 12 — Projected impact — based on the system's design, not yet measured in production
+
+- Enquiries answered in seconds, at any hour, instead of the next morning
+- Every enquiry logged; none lost in a DM inbox
+- Staff told which language to call in before they dial
+- Follow-up reminders sent without anyone remembering to send them
+- Five ad variations per week without a content team
+
+## Tech stack used
+
+n8n · Gemini 3.6 Flash · ElevenLabs Agents · Google Sheets · Gmail · Coefficient · Claude Code · GitHub · Vercel
+
+## 13 — Questions
+
+**What is an AI Business OS for a clinic?**
+An AI Business OS is one connected system that handles a clinic's repeatable front-office work: answering enquiries at any hour, capturing every lead, holding appointment slots, sending follow-up reminders and drafting marketing content. The Sakhiya AI Business OS does this with an ElevenLabs voice and chat assistant, an n8n workflow backbone, three Gemini-powered agents and a Google Sheets dashboard, built as a student capstone for a real Surat dermatology clinic.
+
+**How does the system handle Gujarati written in Roman letters?**
+The system treats language and script as two separate decisions. When a patient types "mane laser karvanu chhe", the Lead Qualification agent detects the language as Gujarati and the script as Roman, and replies in Roman-script Gujarati rather than Hindi. What the patient actually typed overrides whatever language they selected in a dropdown: in execution run #32 the dropdown said English, the message was Roman-script Gujarati, and the system followed the message.
+
+**Does the AI assistant book appointments by itself?**
+No. The assistant holds a slot and returns a reference such as SSC-BK-06485281, then tells the patient the clinic team will call to confirm. It never says "confirmed", because the system has no real access to the clinic's calendar and a false confirmation would recreate the wait-time complaint this build exists to fix. Staff confirm.
+
+**What stops the AI from giving medical advice or quoting prices?**
+Eight safety rules are enforced in three layers: the assistant's system prompt, the ElevenLabs platform guardrails, and the n8n workflow code. The assistant never gives medical advice, never states or hints at a price, never calls a treatment safe or effective, never names a treating doctor, never compares clinics, never writes aftercare, and never confirms a booking. Test prompts like "laser hair removal ka kitna charge hai?" are refused.
+
+**What happens when the requested slot is full?**
+The booking engine reads the live schedule and returns up to three genuinely open alternative slots instead of guessing. This was verified in execution run #25. When the requested slot is open, the seat is held and a reference is returned, as in run #24 (reference SSC-BK-13664941).
+
+**Which tools is the system built with?**
+n8n for the workflow backbone, Gemini 3.6 Flash for the three agents, ElevenLabs Agents for the 24/7 voice and chat assistant, Google Sheets and Gmail for logging and alerts, Coefficient for the live dashboard, Claude Code for building this site, and GitHub and Vercel for hosting it.
+
+**What happened when the AI got something wrong?**
+Seven failures are logged publicly on this site with their fixes. The most important one: a patient asked for an evening slot and the system booked afternoon. The slot mapping was written into the prompt three times and ignored three times; once moved into code it has not failed since. The lesson stated on the site is that a prompt is a request and code is a rule.
+
+## 14 — Acknowledgement
+
+Thank you to Nabin sir and WsCube Tech.
+
+"Sir, aapne hame itna kabil banaya ki hum ek complete AI Business OS zero se bana sake — AURA se ENGINE tak, aur ab INFINITY. Dhanyavaad."
+
+## Footer
+
+This is an independent student capstone project demonstrating an AI automation system. It is not the official website of Sakhiya Skin Clinic and is not affiliated with or endorsed by the clinic. Clinic information shown here is publicly available from sakhiyaskinclinic.com. For real appointments, visit sakhiyaskinclinic.com or call 1800 1200 70000.
+
+Official clinic website: https://sakhiyaskinclinic.com
+Toll free: 1800 1200 70000
+WhatsApp: +91 9875147554
+Built by Sandeep "Sujit" Tiwari · WsCube Tech PCAI Cohort 1 · Mentor: Nabin sir

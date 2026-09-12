@@ -1,0 +1,42 @@
+# Sakhiya AI Business OS
+
+> A working AI Business OS built as a student capstone for Sakhiya Skin Clinic, Surat — a 4.9-star dermatology clinic with ~3,970 Google reviews whose real pain is appointment and slot management, not lead volume. The system captures enquiries in the patient's own language (Gujarati, Hinglish or English, including Gujarati typed in Roman letters), holds a real appointment slot without ever confirming it, scores leads 0–100, sends follow-up reminders and drafts ad variations for human approval.
+
+Disclaimer: This is an independent student capstone project demonstrating an AI automation system. It is not the official website of Sakhiya Skin Clinic and is not affiliated with or endorsed by the clinic. Clinic information shown here is publicly available from sakhiyaskinclinic.com. For real appointments, visit sakhiyaskinclinic.com or call 1800 1200 70000.
+
+Built by Sandeep "Sujit" Tiwari for the WsCube Tech Professional Certification in AI (PCAI), Cohort 1. Mentor: Nabin sir.
+
+## The client problem
+
+- [The Problem](https://sakhiya-ai-business-os.vercel.app/#problem): A public Google review of the Vesu branch describes an 11:30 appointment with an hour-plus wait while staff filmed a promotional reel. Surat patients write Gujarati in Roman letters, which most systems misread as Hindi. Enquiries arrive at 11 PM when the clinic is shut (hours: Mon–Sat 10 AM – 7 PM).
+
+## Architecture
+
+- [System](https://sakhiya-ai-business-os.vercel.app/#system): Instagram ad / website → ElevenLabs AI assistant (24/7) → webhook → n8n backbone → Lead Agent, Follow-up Agent, Ad Creative Agent and a Booking Engine → Slack/Email alerts, repeat-visit reminders, ads for approval → live dashboard (Coefficient + Google Sheets).
+- [The Three Agents](https://sakhiya-ai-business-os.vercel.app/#agents): Each runs Plan → Act → Check → Improve. Lead Qualification scores 0–100 and detects language and script; Hot (70+) triggers an instant alert naming the language to call in. Follow-up runs every morning Mon–Sat for sessions due within 3 days. Ad Creative writes five variations per weekly brief, self-checked against India healthcare ad rules.
+- [The Booking Engine](https://sakhiya-ai-business-os.vercel.app/#booking): Holds a slot and returns a reference like SSC-BK-06485281. Never says "confirmed" — staff confirm. If the slot is full it returns up to three genuinely open alternatives from the live schedule.
+
+## Language handling
+
+- [Language Handling](https://sakhiya-ai-business-os.vercel.app/#language): Language and script are two separate decisions. "mane laser karvanu chhe" is Gujarati in Roman script and gets a Roman-script Gujarati reply. What the patient typed beats the dropdown selection.
+
+## Evidence
+
+- [Execution Log](https://sakhiya-ai-business-os.vercel.app/#evidence): Eight real n8n runs (#24, #25, #32, #34, #35, #36, #43, #47) including a Roman-Gujarati enquiry scored 90/Hot with dropdown set to English, a held booking (SSC-BK-13664941), a full-slot run returning three alternatives, and a refused booking with empty name and phone. Assistant: 9 conversations, 100% success rate.
+
+## Safety rules
+
+- [Safety](https://sakhiya-ai-business-os.vercel.app/#safety): Eight rules enforced in three layers (system prompt, platform guardrails, workflow code). Never gives medical advice; never states or hints at a price; never calls a treatment safe, painless, effective, guaranteed or permanent; never names the treating doctor; never compares clinics; never writes aftercare; never confirms a booking; wait-time complaints get an apology with no excuse and immediate escalation. The medical/legal content guardrail was deliberately left off because it would block the clinic's own subject matter.
+
+## Failure log
+
+- [What Broke](https://sakhiya-ai-business-os.vercel.app/#what-broke): Seven real failures with fixes — Sheets column mapping, n8n Gateway Credits nodeNotCovered, gemini-2.5-flash closed to new keys (moved to gemini-3.6-flash), reply stuffed into reply_script (strict JSON schema), booking tool called before name/phone existed (validation gate in code), evening booked as afternoon (slot mapping moved to code), and the enum that caused it (removed; code converts raw words). Lesson: a prompt is a request, code is a rule.
+
+## Tech stack
+
+- [Stack](https://sakhiya-ai-business-os.vercel.app/#stack): n8n · Gemini 3.6 Flash · ElevenLabs Agents · Google Sheets · Gmail · Coefficient · Claude Code · GitHub · Vercel.
+
+## Optional
+
+- [Full page content as markdown](https://sakhiya-ai-business-os.vercel.app/llms-full.txt)
+- [Official clinic website](https://sakhiyaskinclinic.com): The real Sakhiya Skin Clinic. This project is not it.
