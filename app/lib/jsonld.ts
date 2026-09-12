@@ -1,11 +1,4 @@
-import {
-  BUILDER,
-  FAQ,
-  NAV,
-  PRODUCT_NAME,
-  SITE_DESCRIPTION,
-  SITE_URL,
-} from "./site";
+import { BUILDER, FAQ, NAV, PRODUCT_NAME, SITE_DESCRIPTION, SITE_URL } from "./site";
 
 /**
  * Structured data for answer engines. Deliberately no MedicalBusiness or

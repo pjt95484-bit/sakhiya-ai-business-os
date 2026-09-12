@@ -52,7 +52,15 @@ function wideLayout(): Layout {
   const h = 56;
   const cols = [30, 260, 490];
   const cx = cols.map((x) => x + w / 2);
-  const rows = { source: 8, assistant: 104, n8n: 200, agents: 316, booking: 404, outputs: 508, dashboard: 612 };
+  const rows = {
+    source: 8,
+    assistant: 104,
+    n8n: 200,
+    agents: 316,
+    booking: 404,
+    outputs: 508,
+    dashboard: 612,
+  };
   const nodes: Record<string, Pos> = {
     source: { x: cols[1], y: rows.source, w, h },
     assistant: { x: cols[1], y: rows.assistant, w, h },
@@ -80,7 +88,13 @@ function wideLayout(): Layout {
     `-M${cx[0]} ${rows.outputs + h} V588 M${cx[2]} ${rows.outputs + h} V588 M${cx[0]} 588 H${cx[2]}`,
     `M${cx[1]} ${rows.outputs + h} V${rows.dashboard}`,
   ];
-  return { width: 720, height: 680, nodes, edges, label: { x: cx[1] + 10, y: 184, text: "webhook" } };
+  return {
+    width: 720,
+    height: 680,
+    nodes,
+    edges,
+    label: { x: cx[1] + 10, y: 184, text: "webhook" },
+  };
 }
 
 function narrowLayout(): Layout {
@@ -124,7 +138,15 @@ function narrowLayout(): Layout {
   return { width: 330, height: 1060, nodes, edges, label: { x: cx + 10, y: 178, text: "webhook" } };
 }
 
-function Diagram({ layout, className, titleId }: { layout: Layout; className?: string; titleId: string }) {
+function Diagram({
+  layout,
+  className,
+  titleId,
+}: {
+  layout: Layout;
+  className?: string;
+  titleId: string;
+}) {
   return (
     <svg
       viewBox={`0 0 ${layout.width} ${layout.height}`}
@@ -137,17 +159,29 @@ function Diagram({ layout, className, titleId }: { layout: Layout; className?: s
         alerts, reminders and ad approvals → live dashboard
       </title>
       <defs>
-        <marker id={`${titleId}-arrow`} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-          <path d="M0 0 L10 5 L0 10 z" className="fill-ink-mute" />
+        <marker
+          id={`${titleId}-arrow`}
+          viewBox="0 0 10 10"
+          refX="9"
+          refY="5"
+          markerWidth="7"
+          markerHeight="7"
+          orient="auto-start-reverse"
+        >
+          <path d="M0 0 L10 5 L0 10 z" className="fill-copy-muted" />
         </marker>
       </defs>
 
-      <g className="fill-none stroke-line-strong" strokeWidth="1.5">
+      <g className="fill-none stroke-neon-dim" strokeWidth="1.5">
         {layout.edges.map((d, i) => {
           // Edges prefixed with "-" are bus/rail segments and carry no arrowhead.
           const arrow = !d.startsWith("-");
           return (
-            <path key={i} d={d.replace(/^-/, "")} markerEnd={arrow ? `url(#${titleId}-arrow)` : undefined} />
+            <path
+              key={i}
+              d={d.replace(/^-/, "")}
+              markerEnd={arrow ? `url(#${titleId}-arrow)` : undefined}
+            />
           );
         })}
       </g>
@@ -155,7 +189,7 @@ function Diagram({ layout, className, titleId }: { layout: Layout; className?: s
       <text
         x={layout.label.x}
         y={layout.label.y}
-        className="fill-ink-mute font-mono"
+        className="fill-copy-muted font-mono"
         fontSize="11"
       >
         {layout.label.text}
@@ -169,14 +203,14 @@ function Diagram({ layout, className, titleId }: { layout: Layout; className?: s
         // matches the visible label (WCAG 2.5.3 Label in Name).
         return (
           <a key={n.id} href={`#node-${n.id}`}>
-            <g className="cursor-pointer [&>rect]:hover:stroke-moss-600 [&>rect]:focus-visible:stroke-moss-600">
+            <g className="cursor-pointer [&>rect]:hover:stroke-neon [&>rect]:focus-visible:stroke-neon">
               <rect
                 x={p.x}
                 y={p.y}
                 width={p.w}
                 height={p.h}
                 rx="10"
-                className={n.accent ? "fill-moss-50 stroke-moss-500" : "fill-white stroke-line-strong"}
+                className={n.accent ? "fill-raised stroke-neon" : "fill-surface stroke-neon-dim"}
                 strokeWidth="1.5"
               />
               <text
@@ -184,7 +218,7 @@ function Diagram({ layout, className, titleId }: { layout: Layout; className?: s
                 y={n.sub ? cy - 4 : cy + 1}
                 textAnchor="middle"
                 dominantBaseline="middle"
-                className="fill-ink font-sans"
+                className="fill-copy font-sans"
                 fontSize="14"
                 fontWeight="500"
               >
@@ -196,7 +230,7 @@ function Diagram({ layout, className, titleId }: { layout: Layout; className?: s
                   y={cy + 14}
                   textAnchor="middle"
                   dominantBaseline="middle"
-                  className="fill-ink-mute font-sans"
+                  className="fill-copy-muted font-sans"
                   fontSize="11.5"
                 >
                   {n.sub}
@@ -215,7 +249,7 @@ export function Architecture() {
   const narrow = narrowLayout();
 
   return (
-    <section id="system" aria-labelledby="system-title" className="section border-t border-line">
+    <section id="system" aria-labelledby="system-title" className="section border-t border-edge">
       <div className="container-site">
         <SectionHeading
           kicker="03 — The system"
@@ -224,27 +258,37 @@ export function Architecture() {
           lede="Click any node to read what it does. The flow is top to bottom: a patient arrives from an ad or the website, the assistant talks to them, n8n takes over, and everything ends in a live dashboard."
         />
 
-        <figure className="mt-12 rounded-xl border border-line bg-card p-4 sm:p-8">
-          <Diagram layout={wide} className="mx-auto hidden w-full max-w-[45rem] sm:block" titleId="arch-wide" />
-          <Diagram layout={narrow} className="mx-auto w-full max-w-[21rem] sm:hidden" titleId="arch-narrow" />
-          <figcaption className="mx-auto mt-6 max-w-prose text-center text-xs text-ink-mute">
-            Green nodes are the ones that make decisions. Everything else records, alerts or waits for a
-            human. Select a node to jump to its description.
+        <figure className="section-body rounded-xl border border-edge bg-base p-4 sm:p-8">
+          <Diagram
+            layout={wide}
+            className="mx-auto hidden w-full max-w-[45rem] sm:block"
+            titleId="arch-wide"
+          />
+          <Diagram
+            layout={narrow}
+            className="mx-auto w-full max-w-[21rem] sm:hidden"
+            titleId="arch-narrow"
+          />
+          <figcaption className="mx-auto mt-6 max-w-prose text-center text-xs text-copy-muted">
+            Green nodes are the ones that make decisions. Everything else records, alerts or waits
+            for a human. Select a node to jump to its description.
           </figcaption>
         </figure>
 
-        <dl className="mt-12 grid gap-x-10 md:grid-cols-2 lg:grid-cols-3">
+        <dl className="mt-10 grid gap-x-10 md:grid-cols-2 lg:grid-cols-3">
           {NODES.map((n) => (
             <div
               key={n.id}
               id={`node-${n.id}`}
-              className="scroll-mt-28 border-t border-line py-4 target:border-moss-500"
+              className="border-t border-edge py-4 target:border-neon"
             >
-              <dt className="font-medium text-ink">
+              <dt className="font-medium text-copy">
                 {n.label}
-                {n.sub ? <span className="ml-2 text-sm font-normal text-ink-mute">{n.sub}</span> : null}
+                {n.sub ? (
+                  <span className="ml-2 text-sm font-normal text-copy-muted">{n.sub}</span>
+                ) : null}
               </dt>
-              <dd className="mt-1.5 text-sm leading-relaxed text-ink-soft">{DESCRIPTIONS[n.id]}</dd>
+              <dd className="mt-1.5 text-sm leading-relaxed text-copy">{DESCRIPTIONS[n.id]}</dd>
             </div>
           ))}
         </dl>

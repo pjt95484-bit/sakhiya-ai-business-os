@@ -16,7 +16,11 @@ const STEPS = [
 
 export function Agents() {
   return (
-    <section id="agents" aria-labelledby="agents-title" className="section border-t border-line bg-white">
+    <section
+      id="agents"
+      aria-labelledby="agents-title"
+      className="section border-t border-edge bg-surface"
+    >
       <div className="container-site">
         <SectionHeading
           kicker="06 — The three agents"
@@ -32,12 +36,14 @@ export function Agents() {
               <ol className="mt-5 space-y-4">
                 {STEPS.map(([key, label], i) => (
                   <li key={key} className="grid grid-cols-[2.25rem_1fr] gap-3">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-moss-50 font-mono text-xs text-moss-700">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-raised font-mono text-xs text-neon">
                       {i + 1}
                     </span>
                     <div>
-                      <p className="text-xs font-medium uppercase tracking-wider text-ink-mute">{label}</p>
-                      <p className="mt-0.5 text-sm leading-relaxed text-ink-soft">{agent[key]}</p>
+                      <p className="text-xs font-medium uppercase tracking-wider text-copy-muted">
+                        {label}
+                      </p>
+                      <p className="mt-0.5 text-sm leading-relaxed text-copy">{agent[key]}</p>
                     </div>
                   </li>
                 ))}

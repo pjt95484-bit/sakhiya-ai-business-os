@@ -1,45 +1,49 @@
 import type { Config } from "tailwindcss";
 
+/**
+ * Colours resolve to the CSS custom properties defined in app/globals.css.
+ * The `<alpha-value>` placeholder keeps Tailwind's opacity modifiers working
+ * (bg-surface/80), so no component ever needs a literal colour.
+ */
+const token = (name: string) => `rgb(var(${name}) / <alpha-value>)`;
+
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        paper: "#FAF8F3",
-        card: "#FFFFFF",
-        ink: {
-          DEFAULT: "#17201B",
-          soft: "#3F4A44",
-          mute: "#646E68",
+        base: {
+          DEFAULT: token("--bg-base-rgb"),
+          // Alias used where dark text must sit on a neon fill (the primary CTA).
+          900: token("--bg-base-rgb"),
         },
-        line: {
-          DEFAULT: "#E3DED3",
-          strong: "#C9C2B3",
+        surface: token("--bg-surface-rgb"),
+        raised: token("--bg-raised-rgb"),
+        neon: {
+          DEFAULT: token("--neon-rgb"),
+          dim: token("--neon-dim-rgb"),
         },
-        moss: {
-          50: "#EEF4EF",
-          100: "#D9E6DC",
-          200: "#B3CDB9",
-          500: "#2F6B4F",
-          600: "#245A41",
-          700: "#1C4834",
-          800: "#143627",
-          900: "#0E271C",
+        copy: {
+          DEFAULT: token("--text-rgb"),
+          muted: token("--text-muted-rgb"),
         },
-        clay: {
-          100: "#F6E9DD",
-          500: "#B8673A",
-          700: "#8E4A25",
-        },
+        edge: "rgb(var(--neon-rgb) / 0.18)",
+      },
+      borderColor: {
+        DEFAULT: "rgb(var(--neon-rgb) / 0.18)",
       },
       fontFamily: {
-        serif: ["var(--font-serif)", "Georgia", "serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
+      boxShadow: {
+        glow: "0 0 0 1px rgb(var(--neon-rgb) / 0.4), 0 10px 34px -8px rgb(var(--neon-rgb) / 0.5)",
+        "glow-soft":
+          "0 0 0 1px rgb(var(--neon-rgb) / 0.3), 0 6px 22px -10px rgb(var(--neon-rgb) / 0.35)",
+      },
       maxWidth: {
-        prose: "68ch",
-        site: "72rem",
+        site: "72.5rem",
+        measure: "68ch",
       },
     },
   },

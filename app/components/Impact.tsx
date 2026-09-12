@@ -3,7 +3,7 @@ import { SectionHeading } from "./SectionHeading";
 
 export function Impact() {
   return (
-    <section id="impact" aria-labelledby="impact-title" className="section border-t border-line">
+    <section id="impact" aria-labelledby="impact-title" className="section border-t border-edge">
       <div className="container-site">
         <SectionHeading
           kicker="12 — Projected impact"
@@ -15,8 +15,8 @@ export function Impact() {
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {IMPACT.map((item, i) => (
             <li key={item} className="card">
-              <span className="font-mono text-xs text-moss-700">{String(i + 1).padStart(2, "0")}</span>
-              <p className="mt-2 leading-relaxed text-ink">{item}</p>
+              <span className="font-mono text-xs text-neon">{String(i + 1).padStart(2, "0")}</span>
+              <p className="mt-2 leading-relaxed text-copy">{item}</p>
             </li>
           ))}
         </ul>

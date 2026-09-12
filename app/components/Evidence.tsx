@@ -3,7 +3,11 @@ import { SectionHeading } from "./SectionHeading";
 
 export function Evidence() {
   return (
-    <section id="evidence" aria-labelledby="evidence-title" className="section border-t border-line">
+    <section
+      id="evidence"
+      aria-labelledby="evidence-title"
+      className="section border-t border-edge"
+    >
       <div className="container-site">
         <SectionHeading
           kicker="09 — Evidence"
@@ -12,7 +16,7 @@ export function Evidence() {
           lede="These are actual execution numbers from the workflow's run history. Nothing here is projected. Run #43 is included on purpose: a refusal is a result."
         />
 
-        <div className="mt-12 overflow-x-auto rounded-xl border border-line bg-card">
+        <div className="mt-12 overflow-x-auto rounded-xl border border-edge bg-surface">
           <table className="table-evidence w-full min-w-[44rem]">
             <caption className="sr-only">Execution log of real n8n runs and their results</caption>
             <thead>
@@ -27,12 +31,12 @@ export function Evidence() {
             <tbody>
               {EVIDENCE_RUNS.map((r) => (
                 <tr key={r.run}>
-                  <td className="font-mono text-ink">{r.run}</td>
-                  <td className="text-ink-soft">{r.tested}</td>
-                  <td className={r.refused ? "font-medium text-ink" : "text-ink-soft"}>
+                  <td className="font-mono text-copy">{r.run}</td>
+                  <td className="text-copy">{r.tested}</td>
+                  <td className={r.refused ? "font-medium text-copy" : "text-copy"}>
                     {r.result.split(/(SSC-BK-\d+)/).map((part, i) =>
                       /^SSC-BK-\d+$/.test(part) ? (
-                        <span key={i} className="font-mono text-ink">
+                        <span key={i} className="font-mono text-copy">
                           {part}
                         </span>
                       ) : (
@@ -48,16 +52,17 @@ export function Evidence() {
 
         <dl className="mt-8 grid max-w-md grid-cols-2 gap-4">
           <div className="card">
-            <dt className="text-xs uppercase tracking-wider text-ink-mute">Conversations</dt>
-            <dd className="mt-1 font-serif text-4xl">{ASSISTANT_STATS.conversations}</dd>
+            <dt className="text-xs uppercase tracking-wider text-copy-muted">Conversations</dt>
+            <dd className="mt-1 text-4xl">{ASSISTANT_STATS.conversations}</dd>
           </div>
           <div className="card">
-            <dt className="text-xs uppercase tracking-wider text-ink-mute">Success rate</dt>
-            <dd className="mt-1 font-serif text-4xl">{ASSISTANT_STATS.successRate}</dd>
+            <dt className="text-xs uppercase tracking-wider text-copy-muted">Success rate</dt>
+            <dd className="mt-1 text-4xl">{ASSISTANT_STATS.successRate}</dd>
           </div>
         </dl>
-        <p className="mt-3 text-xs text-ink-mute">
-          Assistant numbers are the ElevenLabs agent&rsquo;s own dashboard figures at the time of writing.
+        <p className="mt-3 text-xs text-copy-muted">
+          Assistant numbers are the ElevenLabs agent&rsquo;s own dashboard figures at the time of
+          writing.
         </p>
       </div>
     </section>

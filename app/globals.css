@@ -2,14 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===========================================================================
+   DESIGN TOKENS — the single source of truth for colour in this project.
+   Channel triplets are authoritative; the hex-equivalent custom properties are
+   derived from them so Tailwind can apply opacity modifiers (bg-surface/80)
+   without the two drifting apart. No component may hardcode a colour.
+   =========================================================================== */
 @layer base {
   :root {
-    color-scheme: light;
+    --bg-base-rgb: 7 20 14; /* #07140E */
+    --bg-surface-rgb: 14 33 24; /* #0E2118 */
+    --bg-raised-rgb: 20 48 31; /* #14301F */
+    --neon-rgb: 43 232 110; /* #2BE86E */
+    --neon-dim-rgb: 31 168 81; /* #1FA851 */
+    --text-rgb: 237 246 240; /* #EDF6F0 */
+    --text-muted-rgb: 143 169 155; /* #8FA99B */
+
+    --bg-base: rgb(var(--bg-base-rgb));
+    --bg-surface: rgb(var(--bg-surface-rgb));
+    --bg-raised: rgb(var(--bg-raised-rgb));
+    --neon: rgb(var(--neon-rgb));
+    --neon-dim: rgb(var(--neon-dim-rgb));
+    --text: rgb(var(--text-rgb));
+    --text-muted: rgb(var(--text-muted-rgb));
+    --border: rgb(var(--neon-rgb) / 0.18);
+
+    /* Glow is reserved for the primary CTA and active/hover states only. */
+    --glow: 0 0 0 1px rgb(var(--neon-rgb) / 0.4), 0 10px 34px -8px rgb(var(--neon-rgb) / 0.5);
+    --glow-soft: 0 0 0 1px rgb(var(--neon-rgb) / 0.3), 0 6px 22px -10px rgb(var(--neon-rgb) / 0.35);
+
+    color-scheme: dark;
+  }
+
+  /* ---- SPACING SCALE (Part B7) — one rhythm, applied everywhere ---- */
+  :root {
+    --space-section: 5.5rem; /* vertical padding inside every <section> */
+    --space-eyebrow: 0.875rem; /* eyebrow  -> headline */
+    --space-lead: 1.25rem; /* headline -> lead paragraph */
+    --space-content: 3rem; /* lead     -> section content */
+    --space-header: 6.5rem; /* sticky header clearance for anchors */
+  }
+
+  @media (min-width: 640px) {
+    :root {
+      --space-section: 7rem;
+      --space-content: 3.5rem;
+      --space-header: 7rem;
+    }
   }
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 7rem;
+    /* Part B6 — anchored sections must clear the sticky header. */
+    scroll-padding-top: var(--space-header);
+    -webkit-text-size-adjust: 100%;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -26,89 +72,161 @@
   }
 
   body {
-    @apply bg-paper text-ink font-sans antialiased;
-    font-feature-settings: "ss01", "cv11";
+    background-color: var(--bg-base);
+    color: var(--text);
+    @apply font-sans antialiased;
+    font-size: 1.0625rem; /* Part B2 — body raised slightly */
+    line-height: 1.6;
+    font-weight: 400;
   }
 
   h1,
   h2,
   h3,
   h4 {
-    @apply font-serif tracking-tight text-ink;
+    @apply font-sans font-extrabold text-copy;
+    letter-spacing: -0.025em;
+    line-height: 1.08;
     text-wrap: balance;
+  }
+
+  h3,
+  h4 {
+    line-height: 1.15;
+    letter-spacing: -0.015em;
   }
 
   p {
     text-wrap: pretty;
+    text-align: left; /* Part D — never justified */
   }
 
   ::selection {
-    @apply bg-moss-100 text-moss-900;
+    background: rgb(var(--neon-rgb) / 0.25);
+    color: var(--text);
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-moss-600 ring-offset-2 ring-offset-paper;
+    outline: none;
+    box-shadow: 0 0 0 2px var(--bg-base), 0 0 0 4px var(--neon);
+    border-radius: 4px;
+  }
+
+  /* Every anchored section clears the header (Part B6). */
+  section[id],
+  [id^="node-"],
+  [id^="agent-"] {
+    scroll-margin-top: var(--space-header);
   }
 }
 
 @layer components {
+  /* ---- LAYOUT (Part B1) — one centred container, ~1160px ---- */
   .container-site {
-    @apply mx-auto w-full max-w-site px-5 sm:px-8;
+    @apply mx-auto w-full px-5 sm:px-8;
+    max-width: 72.5rem; /* 1160px */
   }
 
   .section {
-    @apply py-16 sm:py-24;
+    padding-top: var(--space-section);
+    padding-bottom: var(--space-section);
   }
 
+  /* ---- SECTION HEADER RHYTHM (Part B7) ---- */
   .kicker {
-    @apply font-mono text-xs uppercase tracking-[0.18em] text-moss-600;
+    @apply font-mono text-xs font-medium uppercase text-neon;
+    letter-spacing: 0.16em;
   }
 
   .h2 {
-    @apply mt-3 text-3xl leading-[1.1] sm:text-4xl md:text-[2.75rem];
+    margin-top: var(--space-eyebrow);
+    @apply text-[2rem] sm:text-[2.5rem] lg:text-[2.875rem];
   }
 
   .lede {
-    @apply mt-5 max-w-prose text-lg leading-relaxed text-ink-soft;
+    margin-top: var(--space-lead);
+    @apply text-copy-muted;
+    max-width: 65ch; /* Part B2 — capped measure */
+    font-size: 1.0625rem;
+    line-height: 1.6;
   }
 
+  .section-body {
+    margin-top: var(--space-content);
+  }
+
+  /* Body copy blocks: consistent measure, left aligned, never justified. */
+  .prose-measure {
+    max-width: 68ch;
+  }
+
+  /* ---- SURFACES ---- */
+  /* Part B4 — cards fill their grid row so every card in a row is equal height,
+     with content flowing from the top and identical internal padding. */
   .card {
-    @apply rounded-xl border border-line bg-card p-6 shadow-[0_1px_0_rgba(23,32,27,0.04)];
+    @apply flex h-full flex-col rounded-xl border border-edge bg-surface p-6;
   }
 
+  /* Pushes a trailing element to the bottom of an equal-height card. */
+  .card-foot {
+    @apply mt-auto pt-5;
+  }
+
+  .card-hover {
+    @apply transition-colors hover:bg-raised;
+  }
+
+  /* ---- CONTROLS ---- */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium transition-colors;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all;
   }
 
   .btn-primary {
-    @apply btn bg-moss-700 text-white hover:bg-moss-800;
+    @apply btn bg-neon text-base-900;
+    box-shadow: var(--glow-soft);
+  }
+
+  .btn-primary:hover {
+    box-shadow: var(--glow);
   }
 
   .btn-secondary {
-    @apply btn border border-line-strong bg-transparent text-ink hover:border-ink hover:bg-white;
+    @apply btn border border-edge bg-surface text-copy hover:border-neon hover:bg-raised;
   }
 
   .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3 py-1.5 text-sm text-ink-soft;
+    @apply inline-flex items-center gap-2 rounded-full border border-edge bg-surface px-4 py-2 text-sm text-copy;
+  }
+
+  .pill {
+    @apply inline-flex items-center rounded-full border border-neon-dim px-2.5 py-0.5 font-mono text-xs uppercase text-neon;
+    letter-spacing: 0.08em;
   }
 
   .field {
-    @apply block w-full rounded-lg border border-line-strong bg-white px-3.5 py-2.5 text-base text-ink placeholder:text-ink-mute focus:border-moss-600;
+    @apply block w-full rounded-lg border border-edge bg-base px-3.5 py-2.5 text-base text-copy;
+    @apply placeholder:text-copy-muted focus:border-neon;
   }
 
   .label {
-    @apply mb-1.5 block text-sm font-medium text-ink;
+    @apply mb-1.5 block text-sm font-medium text-copy;
   }
 
-  .mono {
-    @apply font-mono text-[0.85em] text-ink;
+  .link-accent {
+    @apply text-neon underline decoration-neon-dim underline-offset-4 hover:decoration-neon;
+  }
+
+  /* ---- TABLES (Part B — scroll inside their own container) ---- */
+  .table-wrap {
+    @apply overflow-x-auto rounded-xl border border-edge bg-surface;
   }
 
   .table-evidence th {
-    @apply bg-paper px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-ink-mute;
+    @apply bg-raised px-4 py-3 text-left font-mono text-xs font-medium uppercase text-neon;
+    letter-spacing: 0.1em;
   }
 
   .table-evidence td {
-    @apply border-t border-line px-4 py-3.5 align-top text-sm leading-relaxed;
+    @apply border-t border-edge px-4 py-3.5 align-top text-sm leading-relaxed text-copy;
   }
 }

@@ -20,12 +20,12 @@ function CopyPrompt({ text }: { text: string }) {
   }
 
   return (
-    <li className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-line bg-white px-3.5 py-2.5">
-      <code className="font-mono text-sm text-ink">{text}</code>
+    <li className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-edge bg-surface px-3.5 py-2.5">
+      <code className="font-mono text-sm text-copy">{text}</code>
       <button
         type="button"
         onClick={copy}
-        className="rounded-full border border-line-strong px-3 py-1 text-xs font-medium text-ink-soft hover:border-ink hover:text-ink"
+        className="rounded-full border border-edge px-3 py-1 text-xs font-medium text-copy hover:border-neon hover:text-copy"
         aria-live="polite"
       >
         {copied ? "Copied" : "Copy"}
@@ -36,7 +36,11 @@ function CopyPrompt({ text }: { text: string }) {
 
 export function AssistantDemo() {
   return (
-    <section id="demo" aria-labelledby="demo-title" className="section border-t border-line bg-white">
+    <section
+      id="demo"
+      aria-labelledby="demo-title"
+      className="section border-t border-edge bg-surface"
+    >
       <div className="container-site">
         <SectionHeading
           kicker="04 — Live demo · Assistant"
@@ -45,31 +49,35 @@ export function AssistantDemo() {
           lede="This is the same ElevenLabs agent the system runs on, not a mock. Type or speak in Gujarati, Hinglish or English. It will collect your details and hold a slot — it will not quote a price or tell you a treatment is safe."
         />
 
-        <div id="assistant" className="mt-12 grid gap-8 scroll-mt-28 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+        <div
+          id="assistant"
+          className="mt-12 grid gap-8 scroll-mt-28 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"
+        >
           <div>
             <h3 className="text-xl">Three prompts to try</h3>
-            <p className="mt-2 text-sm text-ink-soft">
-              Copy one and paste it into the assistant. The first is a normal enquiry. The last two are
-              restriction tests — the assistant will refuse to quote a price or call anything safe.
+            <p className="mt-2 text-sm text-copy">
+              Copy one and paste it into the assistant. The first is a normal enquiry. The last two
+              are restriction tests — the assistant will refuse to quote a price or call anything
+              safe.
             </p>
             <ol className="mt-4 space-y-2">
               {TEST_PROMPTS.map((p) => (
                 <CopyPrompt key={p.text} text={p.text} />
               ))}
             </ol>
-            <p className="mt-3 text-xs text-ink-mute">
-              The assistant runs on the ElevenLabs platform. Conversations are test data for a student
-              project; do not share real patient details.
+            <p className="mt-3 text-xs text-copy-muted">
+              The assistant runs on the ElevenLabs platform. Conversations are test data for a
+              student project; do not share real patient details.
             </p>
           </div>
 
           <div className="card flex flex-col justify-between">
             <div>
               <h3 className="text-xl">Open the assistant</h3>
-              <p className="mt-2 text-sm text-ink-soft">
-                The chat launcher appears at the bottom-right corner of this page once it loads. If it
-                does not appear, or you are on a phone, the direct link opens the same agent in a new
-                tab.
+              <p className="mt-2 text-sm text-copy">
+                The chat launcher appears at the bottom-right corner of this page once it loads. If
+                it does not appear, or you are on a phone, the direct link opens the same agent in a
+                new tab.
               </p>
               <a
                 href={ELEVENLABS_TALK_URL}
@@ -79,18 +87,18 @@ export function AssistantDemo() {
               >
                 Talk to the assistant in a new tab
               </a>
-              <p className="mt-4 break-all font-mono text-xs text-ink-mute">
+              <p className="mt-4 break-all font-mono text-xs text-copy-muted">
                 Agent ID: {ELEVENLABS_AGENT_ID}
               </p>
             </div>
-            <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-line pt-5">
+            <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-edge pt-5">
               <div>
-                <dt className="text-xs uppercase tracking-wider text-ink-mute">Conversations</dt>
-                <dd className="mt-1 font-serif text-3xl">9</dd>
+                <dt className="text-xs uppercase tracking-wider text-copy-muted">Conversations</dt>
+                <dd className="mt-1 text-3xl">9</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wider text-ink-mute">Success rate</dt>
-                <dd className="mt-1 font-serif text-3xl">100%</dd>
+                <dt className="text-xs uppercase tracking-wider text-copy-muted">Success rate</dt>
+                <dd className="mt-1 text-3xl">100%</dd>
               </div>
             </dl>
           </div>

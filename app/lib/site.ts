@@ -11,8 +11,7 @@ export const ELEVENLABS_AGENT_ID =
   process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID ?? "agent_2801m2ab2k9yezktg6djp7c0pebm";
 
 export const N8N_LEAD_WEBHOOK =
-  process.env.NEXT_PUBLIC_N8N_LEAD_WEBHOOK ??
-  "https://pjt90112.app.n8n.cloud/webhook/sakhiya-lead";
+  process.env.NEXT_PUBLIC_N8N_LEAD_WEBHOOK ?? "https://pjt90112.app.n8n.cloud/webhook/sakhiya-lead";
 
 export const ELEVENLABS_TALK_URL = `https://elevenlabs.io/app/talk-to?agent_id=${ELEVENLABS_AGENT_ID}`;
 
@@ -57,7 +56,14 @@ export const CLINIC = {
     "Hair Fall (Alopecia)",
     "Unwanted Hair",
   ],
-  treatmentCategories: ["Skin", "Laser", "Anti-Ageing", "Hair", "Dermato Surgery", "Plastic Surgery"],
+  treatmentCategories: [
+    "Skin",
+    "Laser",
+    "Anti-Ageing",
+    "Hair",
+    "Dermato Surgery",
+    "Plastic Surgery",
+  ],
 };
 
 export const NAV = [
@@ -220,10 +226,34 @@ export const AGENTS = [
 ];
 
 export const LANGUAGE_ROWS = [
-  { typed: "મારે લેસર કરાવવું છે", language: "Gujarati", script: "Gujarati", reply: "Gujarati script", highlight: false },
-  { typed: "mane laser karvanu chhe", language: "Gujarati", script: "Roman", reply: "Roman-script Gujarati", highlight: true },
-  { typed: "mujhe laser karvana hai", language: "Hinglish", script: "Roman", reply: "Hinglish", highlight: false },
-  { typed: "I want laser treatment", language: "English", script: "Roman", reply: "English", highlight: false },
+  {
+    typed: "મારે લેસર કરાવવું છે",
+    language: "Gujarati",
+    script: "Gujarati",
+    reply: "Gujarati script",
+    highlight: false,
+  },
+  {
+    typed: "mane laser karvanu chhe",
+    language: "Gujarati",
+    script: "Roman",
+    reply: "Roman-script Gujarati",
+    highlight: true,
+  },
+  {
+    typed: "mujhe laser karvana hai",
+    language: "Hinglish",
+    script: "Roman",
+    reply: "Hinglish",
+    highlight: false,
+  },
+  {
+    typed: "I want laser treatment",
+    language: "English",
+    script: "Roman",
+    reply: "English",
+    highlight: false,
+  },
 ];
 
 export const TECH_STACK = [

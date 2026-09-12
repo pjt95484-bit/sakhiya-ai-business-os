@@ -29,23 +29,23 @@ const JOBS = [
 
 export function CoreJobs() {
   return (
-    <section aria-labelledby="jobs-title" className="section border-t border-line bg-white">
+    <section aria-labelledby="jobs-title" className="section border-t border-edge bg-surface">
       <div className="container-site">
         <SectionHeading
           kicker="02 — The four core jobs"
           id="jobs-title"
           title="One system, four jobs a clinic front desk does every day."
         />
-        <ol className="mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
+        <ol className="mt-12 grid gap-px overflow-hidden rounded-xl border border-edge bg-edge sm:grid-cols-2">
           {JOBS.map((job) => (
-            <li key={job.n} className="bg-paper p-6 sm:p-8">
+            <li key={job.n} className="bg-base p-6 sm:p-8">
               <article>
-                <p className="font-serif text-2xl text-moss-600">{job.n}</p>
+                <p className="text-2xl text-neon">{job.n}</p>
                 <h3 className="mt-3 text-xl">{job.title}</h3>
-                <p className="mt-3 text-ink-soft">{job.body}</p>
+                <p className="mt-3 text-copy">{job.body}</p>
                 <a
                   href={job.href}
-                  className="mt-3 inline-block py-1 text-sm font-medium text-moss-700 underline underline-offset-4 hover:text-moss-900"
+                  className="mt-3 inline-block py-1 text-sm font-medium text-neon underline underline-offset-4 hover:text-copy"
                 >
                   See how it runs
                 </a>

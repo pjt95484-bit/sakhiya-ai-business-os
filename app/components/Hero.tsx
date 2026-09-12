@@ -2,16 +2,16 @@ import { CLINIC } from "../lib/site";
 
 export function Hero() {
   return (
-    <section id="top" aria-labelledby="hero-title" className="section border-b border-line">
+    <section id="top" aria-labelledby="hero-title" className="section border-b border-edge">
       <div className="container-site">
         <p className="kicker">Capstone showcase · WsCube Tech PCAI Cohort 1</p>
         <h1
           id="hero-title"
-          className="mt-4 max-w-4xl font-serif text-[2.6rem] leading-[1.02] sm:text-6xl md:text-7xl"
+          className="mt-4 max-w-4xl text-[2.6rem] leading-[1.02] sm:text-6xl md:text-7xl"
         >
           A 4.9-star clinic with a scheduling problem.
         </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft sm:text-xl">
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-copy sm:text-xl">
           The Sakhiya AI Business OS captures enquiries in the patient&rsquo;s own language, holds a
           real slot, and tells the team who to call first.
         </p>
@@ -35,9 +35,9 @@ export function Hero() {
           <li className="chip">40+ centres</li>
           <li className="chip">{CLINIC.experience}</li>
         </ul>
-        <p className="mt-3 text-xs text-ink-mute">
-          Figures are public and taken from Google and {CLINIC.siteLabel}. This site is an independent
-          student project.
+        <p className="mt-3 text-xs text-copy-muted">
+          Figures are public and taken from Google and {CLINIC.siteLabel}. This site is an
+          independent student project.
         </p>
       </div>
     </section>

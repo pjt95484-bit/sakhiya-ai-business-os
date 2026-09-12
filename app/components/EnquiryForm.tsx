@@ -164,10 +164,23 @@ export function EnquiryForm() {
   const submitting = status === "submitting";
 
   const score = pick(result, ["lead_score", "score"]);
-  const temp = pick(result, ["lead_status", "temperature", "lead_temperature", "status", "priority", "category"]);
+  const temp = pick(result, [
+    "lead_status",
+    "temperature",
+    "lead_temperature",
+    "status",
+    "priority",
+    "category",
+  ]);
   const language = pick(result, ["detected_language", "language"]);
   const script = pick(result, ["detected_script", "script"]);
-  const reply = pick(result, ["reply", "reply_script", "reply_text", "suggested_reply", "response"]);
+  const reply = pick(result, [
+    "reply",
+    "reply_script",
+    "reply_text",
+    "suggested_reply",
+    "response",
+  ]);
   const reference = pick(result, ["booking_reference", "reference", "hold_reference", "ref"]);
   const hasSummary = Boolean(score || temp || language || script || reply || reference);
   // The workflow's last node is the Gmail alert, so a successful run can come
@@ -176,7 +189,7 @@ export function EnquiryForm() {
   const alertSent = !hasSummary && Boolean(pick(result, ["threadId"]));
 
   return (
-    <section id="enquiry" aria-labelledby="enquiry-title" className="section border-t border-line">
+    <section id="enquiry" aria-labelledby="enquiry-title" className="section border-t border-edge">
       <div className="container-site">
         <SectionHeading
           kicker="05 — Live demo · Enquiry form"
@@ -186,7 +199,12 @@ export function EnquiryForm() {
         />
 
         <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
-          <form onSubmit={onSubmit} className="card space-y-5" aria-describedby="privacy-note" noValidate>
+          <form
+            onSubmit={onSubmit}
+            className="card space-y-5"
+            aria-describedby="privacy-note"
+            noValidate
+          >
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
                 <label htmlFor="f-patient_name" className="label">
@@ -206,7 +224,7 @@ export function EnquiryForm() {
               </div>
               <div>
                 <label htmlFor="f-phone" className="label">
-                  Phone <span className="font-normal text-ink-mute">(10 digits)</span>
+                  Phone <span className="font-normal text-copy-muted">(10 digits)</span>
                 </label>
                 <input
                   id="f-phone"
@@ -226,8 +244,20 @@ export function EnquiryForm() {
             </div>
 
             <div className="grid gap-5 sm:grid-cols-2">
-              <Select name="concern" label="Concern" options={FORM_OPTIONS.concern} value={data.concern} onChange={set("concern")} />
-              <Select name="centre" label="Centre" options={FORM_OPTIONS.centre} value={data.centre} onChange={set("centre")} />
+              <Select
+                name="concern"
+                label="Concern"
+                options={FORM_OPTIONS.concern}
+                value={data.concern}
+                onChange={set("concern")}
+              />
+              <Select
+                name="centre"
+                label="Centre"
+                options={FORM_OPTIONS.centre}
+                value={data.centre}
+                onChange={set("centre")}
+              />
               <Select
                 name="visit_timeline"
                 label="When do you want to visit?"
@@ -235,8 +265,20 @@ export function EnquiryForm() {
                 value={data.visit_timeline}
                 onChange={set("visit_timeline")}
               />
-              <Select name="time_slot" label="Preferred time" options={FORM_OPTIONS.time_slot} value={data.time_slot} onChange={set("time_slot")} />
-              <Select name="language" label="Language (dropdown)" options={FORM_OPTIONS.language} value={data.language} onChange={set("language")} />
+              <Select
+                name="time_slot"
+                label="Preferred time"
+                options={FORM_OPTIONS.time_slot}
+                value={data.time_slot}
+                onChange={set("time_slot")}
+              />
+              <Select
+                name="language"
+                label="Language (dropdown)"
+                options={FORM_OPTIONS.language}
+                value={data.language}
+                onChange={set("language")}
+              />
             </div>
 
             <div>
@@ -256,25 +298,33 @@ export function EnquiryForm() {
                 autoCorrect="off"
                 autoCapitalize="off"
               />
-              <p className="mt-1.5 text-xs text-ink-mute">
+              <p className="mt-1.5 text-xs text-copy-muted">
                 Sent exactly as typed. Try Roman-script Gujarati with the dropdown set to English.
               </p>
             </div>
 
             <div className="flex flex-wrap items-center gap-4">
-              <button type="submit" disabled={submitting} className="btn-primary disabled:cursor-wait disabled:opacity-70">
+              <button
+                type="submit"
+                disabled={submitting}
+                className="btn-primary disabled:cursor-wait disabled:opacity-70"
+              >
                 {submitting ? "Scoring your enquiry…" : "Send test enquiry"}
               </button>
               {submitting ? (
-                <span className="font-mono text-sm text-ink-mute" role="status" aria-live="polite">
+                <span
+                  className="font-mono text-sm text-copy-muted"
+                  role="status"
+                  aria-live="polite"
+                >
                   {elapsed}s · Gemini agent running, usually 20–40s
                 </span>
               ) : null}
             </div>
 
-            <p id="privacy-note" className="border-t border-line pt-4 text-xs text-ink-mute">
-              This form sends data to a live demo workflow. Please use test details, not real patient
-              information.
+            <p id="privacy-note" className="border-t border-edge pt-4 text-xs text-copy-muted">
+              This form sends data to a live demo workflow. Please use test details, not real
+              patient information.
             </p>
           </form>
 
@@ -282,12 +332,12 @@ export function EnquiryForm() {
             {status === "idle" ? (
               <div className="card h-full border-dashed">
                 <p className="kicker">What comes back</p>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-                  The result card shows the last node&rsquo;s JSON from the workflow: a score, whether
-                  the lead is Hot, and the language and script the agent detected from your message.
-                  The row also lands in a Google Sheet.
+                <p className="mt-3 text-sm leading-relaxed text-copy">
+                  The result card shows the last node&rsquo;s JSON from the workflow: a score,
+                  whether the lead is Hot, and the language and script the agent detected from your
+                  message. The row also lands in a Google Sheet.
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+                <p className="mt-3 text-sm leading-relaxed text-copy">
                   Nothing spins silently. While the agent is thinking you will see a live counter.
                 </p>
               </div>
@@ -297,77 +347,88 @@ export function EnquiryForm() {
               <div className="card h-full">
                 <p className="kicker">In flight</p>
                 <h3 className="mt-3 text-xl">Scoring your enquiry…</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-                  The webhook has your message. A Gemini agent is reading it, scoring it and deciding
-                  which language to reply in. This takes 20–40 seconds because the model runs for real.
+                <p className="mt-3 text-sm leading-relaxed text-copy">
+                  The webhook has your message. A Gemini agent is reading it, scoring it and
+                  deciding which language to reply in. This takes 20–40 seconds because the model
+                  runs for real.
                 </p>
-                <div className="mt-5 h-1 w-full overflow-hidden rounded-full bg-line">
+                <div className="mt-5 h-1 w-full overflow-hidden rounded-full bg-edge">
                   <div
-                    className="h-full bg-moss-600 transition-[width] duration-1000 ease-linear"
+                    className="h-full bg-neon transition-[width] duration-1000 ease-linear"
                     style={{ width: `${Math.min(95, (elapsed / 40) * 100)}%` }}
                   />
                 </div>
-                <p className="mt-2 font-mono text-xs text-ink-mute">{elapsed}s elapsed</p>
+                <p className="mt-2 font-mono text-xs text-copy-muted">{elapsed}s elapsed</p>
               </div>
             ) : null}
 
             {status === "success" ? (
-              <div className="card h-full border-moss-200 bg-moss-50/40">
+              <div className="card h-full border-edge bg-raised">
                 <p className="kicker">Result</p>
                 <h3 className="mt-3 text-xl">
-                  {hasSummary ? "Enquiry received and scored." : "Enquiry received. The workflow ran."}
+                  {hasSummary
+                    ? "Enquiry received and scored."
+                    : "Enquiry received. The workflow ran."}
                 </h3>
                 {alertSent ? (
-                  <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-                    The agent scored your enquiry, detected its language and script, logged the row, and
-                    sent the staff alert — the workflow answers with the id of that alert email, which is
-                    why you see a message id below rather than the score. The score itself lands in the
-                    Google Sheet alongside the detected language.
+                  <p className="mt-3 text-sm leading-relaxed text-copy">
+                    The agent scored your enquiry, detected its language and script, logged the row,
+                    and sent the staff alert — the workflow answers with the id of that alert email,
+                    which is why you see a message id below rather than the score. The score itself
+                    lands in the Google Sheet alongside the detected language.
                   </p>
                 ) : null}
                 {hasSummary ? (
                   <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
                     {score ? (
                       <div>
-                        <dt className="text-xs uppercase tracking-wider text-ink-mute">Score</dt>
-                        <dd className="mt-0.5 font-serif text-2xl">{score}</dd>
+                        <dt className="text-xs uppercase tracking-wider text-copy-muted">Score</dt>
+                        <dd className="mt-0.5 text-2xl">{score}</dd>
                       </div>
                     ) : null}
                     {temp ? (
                       <div>
-                        <dt className="text-xs uppercase tracking-wider text-ink-mute">Status</dt>
-                        <dd className="mt-0.5 font-serif text-2xl">{temp}</dd>
+                        <dt className="text-xs uppercase tracking-wider text-copy-muted">Status</dt>
+                        <dd className="mt-0.5 text-2xl">{temp}</dd>
                       </div>
                     ) : null}
                     {language ? (
                       <div>
-                        <dt className="text-xs uppercase tracking-wider text-ink-mute">Language</dt>
+                        <dt className="text-xs uppercase tracking-wider text-copy-muted">
+                          Language
+                        </dt>
                         <dd className="mt-0.5 font-medium">{language}</dd>
                       </div>
                     ) : null}
                     {script ? (
                       <div>
-                        <dt className="text-xs uppercase tracking-wider text-ink-mute">Script</dt>
+                        <dt className="text-xs uppercase tracking-wider text-copy-muted">Script</dt>
                         <dd className="mt-0.5 font-medium">{script}</dd>
                       </div>
                     ) : null}
                     {reference ? (
                       <div className="col-span-2">
-                        <dt className="text-xs uppercase tracking-wider text-ink-mute">Reference</dt>
+                        <dt className="text-xs uppercase tracking-wider text-copy-muted">
+                          Reference
+                        </dt>
                         <dd className="mt-0.5 font-mono">{reference}</dd>
                       </div>
                     ) : null}
                     {reply ? (
                       <div className="col-span-2">
-                        <dt className="text-xs uppercase tracking-wider text-ink-mute">Suggested reply</dt>
+                        <dt className="text-xs uppercase tracking-wider text-copy-muted">
+                          Suggested reply
+                        </dt>
                         <dd className="mt-0.5 leading-relaxed">{reply}</dd>
                       </div>
                     ) : null}
                   </dl>
                 ) : null}
                 <details className="mt-4 text-sm">
-                  <summary className="cursor-pointer text-ink-soft">Raw response from the last n8n node</summary>
-                  <pre className="mt-2 max-h-72 overflow-auto rounded-lg bg-white p-3 font-mono text-xs leading-relaxed text-ink">
+                  <summary className="cursor-pointer text-copy">
+                    Raw response from the last n8n node
+                  </summary>
+                  <pre className="mt-2 max-h-72 overflow-auto rounded-lg bg-surface p-3 font-mono text-xs leading-relaxed text-copy">
                     {typeof result === "string" ? result : JSON.stringify(result, null, 2)}
                   </pre>
                 </details>
@@ -385,19 +446,26 @@ export function EnquiryForm() {
             ) : null}
 
             {status === "error" ? (
-              <div className="card h-full border-clay-500/40 bg-clay-100/50">
-                <p className="kicker text-clay-700">Could not score</p>
+              <div className="card h-full border-edge bg-raised">
+                <p className="kicker text-neon">Could not score</p>
                 <h3 className="mt-3 text-xl">Something went wrong on the way to the workflow.</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft">{errorMsg}</p>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+                <p className="mt-3 text-sm leading-relaxed text-copy">{errorMsg}</p>
+                <p className="mt-3 text-sm leading-relaxed text-copy">
                   This is a student demo, so it can be down. For a real appointment, call the clinic
                   toll free on{" "}
-                  <a href={CLINIC.tollFreeHref} className="font-medium underline underline-offset-2">
+                  <a
+                    href={CLINIC.tollFreeHref}
+                    className="font-medium underline underline-offset-2"
+                  >
                     {CLINIC.tollFree}
                   </a>
                   .
                 </p>
-                <button type="button" onClick={() => setStatus("idle")} className="btn-secondary mt-5">
+                <button
+                  type="button"
+                  onClick={() => setStatus("idle")}
+                  className="btn-secondary mt-5"
+                >
                   Try again
                 </button>
               </div>
