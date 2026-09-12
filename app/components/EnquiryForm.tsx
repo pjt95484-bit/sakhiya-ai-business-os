@@ -170,6 +170,10 @@ export function EnquiryForm() {
   const reply = pick(result, ["reply", "reply_script", "reply_text", "suggested_reply", "response"]);
   const reference = pick(result, ["booking_reference", "reference", "hold_reference", "ref"]);
   const hasSummary = Boolean(score || temp || language || script || reply || reference);
+  // The workflow's last node is the Gmail alert, so a successful run can come
+  // back as a sent-message id rather than the scoring JSON. That id is proof the
+  // Hot-lead alert went out, so say so instead of printing a bare id.
+  const alertSent = !hasSummary && Boolean(pick(result, ["threadId"]));
 
   return (
     <section id="enquiry" aria-labelledby="enquiry-title" className="section border-t border-line">
@@ -310,7 +314,17 @@ export function EnquiryForm() {
             {status === "success" ? (
               <div className="card h-full border-moss-200 bg-moss-50/40">
                 <p className="kicker">Result</p>
-                <h3 className="mt-3 text-xl">Enquiry received and scored.</h3>
+                <h3 className="mt-3 text-xl">
+                  {hasSummary ? "Enquiry received and scored." : "Enquiry received. The workflow ran."}
+                </h3>
+                {alertSent ? (
+                  <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+                    The agent scored your enquiry, detected its language and script, logged the row, and
+                    sent the staff alert — the workflow answers with the id of that alert email, which is
+                    why you see a message id below rather than the score. The score itself lands in the
+                    Google Sheet alongside the detected language.
+                  </p>
+                ) : null}
                 {hasSummary ? (
                   <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
                     {score ? (
