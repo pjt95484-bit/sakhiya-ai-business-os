@@ -39,8 +39,9 @@ export function LanguageHandling() {
         </div>
 
         <div className="mt-8 grid gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-          <div className="rounded-xl border-l-4 border-moss-600 bg-moss-50 px-5 py-4">
-            <p className="font-serif text-xl text-moss-900">
+          <div>
+            <p className="kicker">The rule</p>
+            <p className="mt-2 font-serif text-2xl leading-snug text-moss-900">
               What the patient actually typed beats whatever they selected in a dropdown.
             </p>
           </div>
