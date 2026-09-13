@@ -45,8 +45,8 @@ export function AssistantDemo() {
         <SectionHeading
           kicker="04 — Live demo · Assistant"
           id="demo-title"
-          title="Talk to the assistant. It is live, and it will refuse the right things."
-          lede="This is the same ElevenLabs agent the system runs on, not a mock. Type or speak in Gujarati, Hinglish or English. It will collect your details and hold a slot — it will not quote a price or tell you a treatment is safe."
+          title="Who answers her."
+          lede="The live agent, not a mock. It takes her details and holds a slot. It will not quote a price or call a treatment safe."
         />
 
         <div
@@ -55,10 +55,9 @@ export function AssistantDemo() {
         >
           <div>
             <h3 className="text-xl">Three prompts to try</h3>
-            <p className="mt-2 text-sm text-copy">
-              Copy one and paste it into the assistant. The first is a normal enquiry. The last two
-              are restriction tests — the assistant will refuse to quote a price or call anything
-              safe.
+            <p className="mt-2 text-sm text-copy-muted">
+              Copy one in. The first is Meera&rsquo;s enquiry. The last two are traps — the
+              assistant should refuse both.
             </p>
             <ol className="mt-4 space-y-2">
               {TEST_PROMPTS.map((p) => (
@@ -66,18 +65,16 @@ export function AssistantDemo() {
               ))}
             </ol>
             <p className="mt-3 text-xs text-copy-muted">
-              The assistant runs on the ElevenLabs platform. Conversations are test data for a
-              student project; do not share real patient details.
+              Runs on ElevenLabs. Test data only — do not share real patient details.
             </p>
           </div>
 
           <div className="card flex flex-col justify-between">
             <div>
               <h3 className="text-xl">Open the assistant</h3>
-              <p className="mt-2 text-sm text-copy">
-                The chat launcher appears at the bottom-right corner of this page once it loads. If
-                it does not appear, or you are on a phone, the direct link opens the same agent in a
-                new tab.
+              <p className="mt-2 text-sm text-copy-muted">
+                The launcher sits bottom-right once it loads. On a phone, or if it does not appear,
+                the link opens the same agent in a new tab.
               </p>
               <a
                 href={ELEVENLABS_TALK_URL}

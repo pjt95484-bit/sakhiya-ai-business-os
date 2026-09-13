@@ -7,7 +7,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-edge bg-base/85 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-edge bg-ground/85 backdrop-blur">
       {/* Legal disclaimer. Every word of DISCLAIMER is present: the visible line
           carries it across breakpoints and the sr-only span holds it verbatim. */}
       <div

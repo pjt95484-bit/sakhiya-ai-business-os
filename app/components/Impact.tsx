@@ -8,8 +8,8 @@ export function Impact() {
         <SectionHeading
           kicker="12 — Projected impact"
           id="impact-title"
-          title="What it saves — based on the system's design, not yet measured in production."
-          lede="These are estimates from how the build works, not measured clinic outcomes. The system has not run inside Sakhiya Skin Clinic's operations."
+          title="What it saves — projected, not measured."
+          lede="These follow from how the build works. They are not measured clinic outcomes; the system has not run inside Sakhiya Skin Clinic's operations."
         />
 
         <ul className="section-body grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

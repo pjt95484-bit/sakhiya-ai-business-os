@@ -25,8 +25,8 @@ export function Agents() {
         <SectionHeading
           kicker="06 — The three agents"
           id="agents-title"
-          title="Each agent runs the same four-step loop: Plan, Act, Check, Improve."
-          lede="Three Gemini 3.6 Flash agents live inside n8n. None of them talks to a patient directly — they read, score, draft and flag, and a person or a code rule decides what happens next."
+          title="Three agents, one loop each."
+          lede="Plan, act, check, improve. None of them talks to a patient directly — a person or a code rule decides what happens next."
         />
 
         <div className="section-body grid gap-5 lg:grid-cols-3">

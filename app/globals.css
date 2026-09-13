@@ -108,7 +108,9 @@
 
   :focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px var(--bg-base), 0 0 0 4px var(--neon);
+    box-shadow:
+      0 0 0 2px var(--bg-base),
+      0 0 0 4px var(--neon);
     border-radius: 4px;
   }
 
@@ -182,7 +184,7 @@
   }
 
   .btn-primary {
-    @apply btn bg-neon text-base-900;
+    @apply btn bg-neon text-ground;
     box-shadow: var(--glow-soft);
   }
 
@@ -204,7 +206,7 @@
   }
 
   .field {
-    @apply block w-full rounded-lg border border-edge bg-base px-3.5 py-2.5 text-base text-copy;
+    @apply block w-full rounded-lg border border-edge bg-ground px-3.5 py-2.5 text-base text-copy;
     @apply placeholder:text-copy-muted focus:border-neon;
   }
 

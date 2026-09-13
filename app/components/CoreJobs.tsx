@@ -2,27 +2,27 @@ import { SectionHeading } from "./SectionHeading";
 
 const JOBS = [
   {
-    n: "I",
+    n: "01",
     title: "Marketing & Content",
-    body: "A weekly brief becomes five ad variations written for a Surat buyer persona, each self-checked against India healthcare ad rules and parked for human approval.",
+    body: "One weekly brief becomes five ad variations, checked against India healthcare ad rules and held for a human to approve.",
     href: "#agent-ad-creative",
   },
   {
-    n: "II",
+    n: "02",
     title: "Lead Capture & Sales",
-    body: "Every enquiry — voice, chat or form — is logged, scored 0–100, tagged with its language and script, and routed. Hot leads trigger an instant alert.",
+    body: "Meera's message is logged, scored out of 100, and tagged with her language. A hot lead alerts the team at once.",
     href: "#agent-lead-qualification",
   },
   {
-    n: "III",
+    n: "03",
     title: "Patient Support & Follow-up",
-    body: "Sessions due within three days get a reminder each morning, written in the patient's own language, with a flag for anything a human should read first.",
+    body: "Sessions due within three days get a reminder each morning, written in the patient's own language.",
     href: "#agent-follow-up",
   },
   {
-    n: "IV",
+    n: "04",
     title: "Clinic Intelligence",
-    body: "Everything lands in Google Sheets and a live Coefficient dashboard, so the team can see enquiry volume, language mix and hold references at a glance.",
+    body: "Every enquiry lands in a sheet and a live dashboard: volume, language mix, hold references.",
     href: "#node-dashboard",
   },
 ];
@@ -34,7 +34,8 @@ export function CoreJobs() {
         <SectionHeading
           kicker="02 — The four core jobs"
           id="jobs-title"
-          title="One system, four jobs a clinic front desk does every day."
+          title="Four jobs a front desk does every day."
+          lede="One system covers all four, so nothing waits for someone to remember it."
         />
         {/* Part B5 — each cell is a real panel: surface fill plus an edge border. */}
         <ol className="section-body grid gap-5 sm:grid-cols-2">

@@ -12,8 +12,8 @@ export function Evidence() {
         <SectionHeading
           kicker="09 — Evidence"
           id="evidence-title"
-          title="Eight real n8n executions, listed as they ran."
-          lede="These are actual execution numbers from the workflow's run history. Nothing here is projected. Run #43 is included on purpose: a refusal is a result."
+          title="Eight real runs."
+          lede="Actual execution numbers from the workflow history. Run #43 is here on purpose: a refusal is a result."
         />
 
         <div className="section-body table-wrap">
@@ -61,8 +61,7 @@ export function Evidence() {
           </div>
         </dl>
         <p className="mt-3 text-xs text-copy-muted">
-          Assistant numbers are the ElevenLabs agent&rsquo;s own dashboard figures at the time of
-          writing.
+          Assistant figures are from the ElevenLabs dashboard at the time of writing.
         </p>
       </div>
     </section>

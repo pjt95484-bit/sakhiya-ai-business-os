@@ -17,27 +17,23 @@ const NODES: NodeDef[] = [
 ];
 
 const DESCRIPTIONS: Record<string, string> = {
-  source:
-    "Where patients come from. An Instagram ad or the website hands the visitor to the assistant instead of a DM inbox nobody checks at 11 PM.",
+  source: "Meera taps an Instagram ad at 11 PM. She lands on the assistant, not a DM inbox.",
   assistant:
-    "An ElevenLabs conversational agent that answers by voice or chat at any hour, in Gujarati, Hinglish or English. It collects name, phone, concern and preferred time, then calls n8n over a webhook. It holds slots; it never confirms them.",
-  n8n: "The workflow backbone. Every enquiry, booking request, morning reminder run and weekly ad brief passes through n8n, which validates inputs in code before any agent or calendar is touched.",
-  lead: "Reads the enquiry and the patient's own words. Gemini scores it 0–100 and detects language and script separately. Hot leads (70+) trigger an instant alert that names the language to call in.",
+    "Answers by voice or chat, any hour, in Gujarati, Hinglish or English. Takes her name, phone, concern and preferred time. It holds slots. It never confirms them.",
+  n8n: "The backbone. Every enquiry, booking, reminder and brief runs through here, checked in code before any agent or calendar is touched.",
+  lead: "Reads what she actually wrote. Gemini scores it out of 100 and works out her language. Score 70 or above alerts staff, naming the language to call in.",
   followup:
-    "Runs every morning Monday to Saturday, finds sessions due within three days, writes a reminder in the patient's own language and script, and writes status back so nobody is reminded twice.",
-  ad: "Turns the weekly brief into a Surat-specific buyer persona, writes five ad variations, self-checks each against India healthcare ad rules and saves them as Awaiting Approval.",
+    "Runs each morning, Monday to Saturday. Finds sessions due within three days, writes the reminder in the patient own language, and records it so nobody is reminded twice.",
+  ad: "Turns a weekly brief into a Surat buyer persona, writes five ads, checks each against India healthcare ad rules, files them as Awaiting Approval.",
   booking:
-    "Holds a seat and returns a reference like SSC-BK-06485281. If the slot is full it returns up to three genuinely open alternatives from the live schedule. Slot and centre mapping happens in code, not in the prompt.",
-  alert:
-    "A Slack or email alert for Hot leads, stating who to call, in which language, and the hold reference.",
+    "Holds a seat and returns a reference like SSC-BK-06485281. If the slot is full it offers up to three genuinely open alternatives. Slot and centre are worked out in code.",
+  alert: "What staff see: who to call, which language, and the hold reference.",
   repeat:
-    "The reminder that brings a patient back for the next session, flagged needs_human_review where a person should read it first.",
+    "The reminder that brings a patient back, flagged needs_human_review when a person should read it first.",
   approval:
-    "Five ad variations in a sheet, marked Awaiting Approval. Nothing is published until a human ticks it.",
-  dashboard:
-    "Google Sheets with a Coefficient dashboard on top: enquiry volume, language mix, Hot-lead count and hold references, live.",
+    "Five ads in a sheet, marked Awaiting Approval. Nothing goes out until someone ticks it.",
+  dashboard: "Volume, language mix, hot leads and hold references, live.",
 };
-
 type Pos = { x: number; y: number; w: number; h: number };
 type Layout = {
   width: number;
@@ -254,11 +250,11 @@ export function Architecture() {
         <SectionHeading
           kicker="03 — The system"
           id="system-title"
-          title="One assistant in front, one n8n backbone behind, three agents and a booking engine in between."
-          lede="Click any node to read what it does. The flow is top to bottom: a patient arrives from an ad or the website, the assistant talks to them, n8n takes over, and everything ends in a live dashboard."
+          title="What happens to her message."
+          lede="Top to bottom: Meera arrives from an ad, the assistant talks to her, n8n takes over. Select any node to read what it does."
         />
 
-        <figure className="section-body rounded-xl border border-edge bg-base p-4 sm:p-8">
+        <figure className="section-body rounded-xl border border-edge bg-ground p-4 sm:p-8">
           <Diagram
             layout={wide}
             className="mx-auto hidden w-full max-w-[45rem] sm:block"
@@ -270,8 +266,7 @@ export function Architecture() {
             titleId="arch-narrow"
           />
           <figcaption className="mx-auto mt-6 max-w-measure text-center text-xs text-copy-muted">
-            Green nodes are the ones that make decisions. Everything else records, alerts or waits
-            for a human. Select a node to jump to its description.
+            Green nodes make decisions. Everything else records, alerts, or waits for a human.
           </figcaption>
         </figure>
 
@@ -288,7 +283,9 @@ export function Architecture() {
                   <span className="ml-2 text-sm font-normal text-copy-muted">{n.sub}</span>
                 ) : null}
               </dt>
-              <dd className="mt-1.5 text-sm leading-relaxed text-copy">{DESCRIPTIONS[n.id]}</dd>
+              <dd className="mt-1.5 text-sm leading-relaxed text-copy-muted">
+                {DESCRIPTIONS[n.id]}
+              </dd>
             </div>
           ))}
         </dl>

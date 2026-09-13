@@ -9,11 +9,7 @@ export function Faq() {
       className="section border-t border-edge bg-surface"
     >
       <div className="container-site">
-        <SectionHeading
-          kicker="13 — Questions"
-          id="faq-title"
-          title="Straight answers to the questions people ask about this build."
-        />
+        <SectionHeading kicker="13 — Questions" id="faq-title" title="Questions" />
         <div className="section-body max-w-measure divide-y divide-edge border-y border-edge">
           {FAQ.map((item) => (
             <details key={item.q} className="group py-4">

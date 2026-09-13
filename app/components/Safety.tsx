@@ -27,8 +27,8 @@ export function Safety() {
         <SectionHeading
           kicker="10 — Safety rules"
           id="safety-title"
-          title="Eight things the assistant never does, enforced in three layers."
-          lede="A dermatology clinic is a medical business. The assistant is a receptionist, not a doctor, and the rules below keep it there. Each rule lives in the system prompt, in the platform guardrails and in the workflow code."
+          title="Eight things it never does."
+          lede="The assistant is a receptionist, not a doctor. Each rule is enforced three times over."
         />
 
         <div className="section-body grid gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">

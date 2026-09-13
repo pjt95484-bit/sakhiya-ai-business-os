@@ -13,8 +13,8 @@ export function Hero() {
           A 4.9-star clinic with a <span className="text-neon">scheduling problem</span>.
         </h1>
         <p className="mt-[var(--space-lead)] max-w-[52ch] text-[1.0625rem] leading-relaxed text-copy-muted sm:text-lg">
-          It answers her in her own language, holds a real slot, and tells the team who to call
-          first.
+          A woman in Surat messages at 11 PM, in Gujarati typed with English letters. This system
+          answers her, holds a real slot, and tells the team who to call first.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">

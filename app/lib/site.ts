@@ -269,40 +269,40 @@ export const TECH_STACK = [
 ];
 
 export const IMPACT = [
-  "Enquiries answered in seconds, at any hour, instead of the next morning",
-  "Every enquiry logged; none lost in a DM inbox",
-  "Staff told which language to call in before they dial",
-  "Follow-up reminders sent without anyone remembering to send them",
+  "Enquiries answered in seconds, at any hour",
+  "Every enquiry logged, none lost in a DM inbox",
+  "Staff told which language to call in, before they dial",
+  "Reminders sent without anyone remembering to send them",
   "Five ad variations per week without a content team",
 ];
 
 export const FAQ = [
   {
     q: "What is an AI Business OS for a clinic?",
-    a: "An AI Business OS is one connected system that handles a clinic's repeatable front-office work: answering enquiries at any hour, capturing every lead, holding appointment slots, sending follow-up reminders and drafting marketing content. The Sakhiya AI Business OS does this with an ElevenLabs voice and chat assistant, an n8n workflow backbone, three Gemini-powered agents and a Google Sheets dashboard, built as a student capstone for a real Surat dermatology clinic.",
+    a: "It is one connected system that handles a clinic’s repeatable front-desk work: answering enquiries at any hour, capturing every lead, holding appointment slots, sending follow-up reminders and drafting ad copy. This one runs on an ElevenLabs assistant, an n8n backbone, three Gemini agents and a Google Sheets dashboard, built as a student capstone for a real Surat dermatology clinic.",
   },
   {
     q: "How does the system handle Gujarati written in Roman letters?",
-    a: "The system treats language and script as two separate decisions. When a patient types “mane laser karvanu chhe”, the Lead Qualification agent detects the language as Gujarati and the script as Roman, and replies in Roman-script Gujarati rather than Hindi. What the patient actually typed overrides whatever language they selected in a dropdown: in execution run #32 the dropdown said English, the message was Roman-script Gujarati, and the system followed the message.",
+    a: "It treats language and script as two separate questions. “mane laser karvanu chhe” is read as Gujarati in Roman script, and answered in Roman-script Gujarati rather than Hindi. What the patient typed beats the dropdown: in run #32 the dropdown said English, the message was Roman-script Gujarati, and the system followed the message.",
   },
   {
     q: "Does the AI assistant book appointments by itself?",
-    a: "No. The assistant holds a slot and returns a reference such as SSC-BK-06485281, then tells the patient the clinic team will call to confirm. It never says “confirmed”, because the system has no real access to the clinic's calendar and a false confirmation would recreate the wait-time complaint this build exists to fix. Staff confirm.",
+    a: "No. It holds a slot, returns a reference such as SSC-BK-06485281, and tells the patient the team will call. It never says confirmed, because it has no real view of the clinic’s calendar and a false confirmation would recreate the wait-time complaint this build exists to fix. Staff confirm.",
   },
   {
     q: "What stops the AI from giving medical advice or quoting prices?",
-    a: "Eight safety rules are enforced in three layers: the assistant's system prompt, the ElevenLabs platform guardrails, and the n8n workflow code. The assistant never gives medical advice, never states or hints at a price, never calls a treatment safe or effective, never names a treating doctor, never compares clinics, never writes aftercare, and never confirms a booking. Test prompts like “laser hair removal ka kitna charge hai?” are refused.",
+    a: "Eight rules, enforced in three layers: the system prompt, the ElevenLabs platform guardrails, and the n8n workflow code. No medical advice, no price, no claim that a treatment is safe, no named doctor, no comparison with another clinic, no aftercare, no confirmed booking. A prompt like “laser hair removal ka kitna charge hai?” is refused.",
   },
   {
     q: "What happens when the requested slot is full?",
-    a: "The booking engine reads the live schedule and returns up to three genuinely open alternative slots instead of guessing. This was verified in execution run #25. When the requested slot is open, the seat is held and a reference is returned, as in run #24 (reference SSC-BK-13664941).",
+    a: "The booking engine reads the live schedule and offers up to three genuinely open alternatives instead of guessing. Verified in run #25. When the slot is open the seat is held and a reference returned, as in run #24 (SSC-BK-13664941).",
   },
   {
     q: "Which tools is the system built with?",
-    a: "n8n for the workflow backbone, Gemini 3.6 Flash for the three agents, ElevenLabs Agents for the 24/7 voice and chat assistant, Google Sheets and Gmail for logging and alerts, Coefficient for the live dashboard, Claude Code for building this site, and GitHub and Vercel for hosting it.",
+    a: "n8n for the workflow backbone, Gemini 3.6 Flash for the three agents, ElevenLabs Agents for the 24/7 assistant, Google Sheets and Gmail for logging and alerts, Coefficient for the dashboard, Claude Code for this site, GitHub and Vercel for hosting.",
   },
   {
     q: "What happened when the AI got something wrong?",
-    a: "Seven failures are logged publicly on this site with their fixes. The most important one: a patient asked for an evening slot and the system booked afternoon. The slot mapping was written into the prompt three times and ignored three times; once moved into code it has not failed since. The lesson stated on the site is that a prompt is a request and code is a rule.",
+    a: "Seven failures are logged publicly on this site with their fixes. The sharpest: a patient asked for an evening slot and the system booked afternoon. The mapping was written into the prompt three times and ignored three times; moved into code, it has not failed since. A prompt is a request. Code is a rule.",
   },
 ];

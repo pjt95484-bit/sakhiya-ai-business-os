@@ -194,8 +194,8 @@ export function EnquiryForm() {
         <SectionHeading
           kicker="05 — Live demo · Enquiry form"
           id="enquiry-title"
-          title="Submit a test enquiry and watch it get scored."
-          lede="This form posts to the live n8n workflow. A Gemini agent reads your message, scores it 0–100, and detects language and script from what you typed — not from the dropdown. Expect a 20–40 second wait."
+          title="Send one yourself."
+          lede="This posts to the live workflow. The agent reads what you typed, not what you picked in the dropdown. Give it 20–40 seconds."
         />
 
         <div className="section-body grid gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
@@ -299,7 +299,7 @@ export function EnquiryForm() {
                 autoCapitalize="off"
               />
               <p className="mt-1.5 text-xs text-copy-muted">
-                Sent exactly as typed. Try Roman-script Gujarati with the dropdown set to English.
+                Sent exactly as typed. Try Gujarati in English letters with the dropdown on English.
               </p>
             </div>
 
@@ -332,13 +332,12 @@ export function EnquiryForm() {
             {status === "idle" ? (
               <div className="card h-full border-dashed">
                 <p className="kicker">What comes back</p>
-                <p className="mt-3 text-sm leading-relaxed text-copy">
-                  The result card shows the last node&rsquo;s JSON from the workflow: a score,
-                  whether the lead is Hot, and the language and script the agent detected from your
-                  message. The row also lands in a Google Sheet.
+                <p className="mt-3 text-sm leading-relaxed text-copy-muted">
+                  A score, whether the lead is hot, and the language detected. The row lands in a
+                  Google Sheet too.
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-copy">
-                  Nothing spins silently. While the agent is thinking you will see a live counter.
+                <p className="mt-3 text-sm leading-relaxed text-copy-muted">
+                  A counter runs while the agent thinks.
                 </p>
               </div>
             ) : null}
@@ -347,10 +346,9 @@ export function EnquiryForm() {
               <div className="card h-full">
                 <p className="kicker">In flight</p>
                 <h3 className="mt-3 text-xl">Scoring your enquiry…</h3>
-                <p className="mt-3 text-sm leading-relaxed text-copy">
-                  The webhook has your message. A Gemini agent is reading it, scoring it and
-                  deciding which language to reply in. This takes 20–40 seconds because the model
-                  runs for real.
+                <p className="mt-3 text-sm leading-relaxed text-copy-muted">
+                  Reading it, scoring it, picking a language. The model runs for real, so give it
+                  20–40 seconds.
                 </p>
                 <div className="mt-5 h-1 w-full overflow-hidden rounded-full bg-edge">
                   <div
@@ -371,11 +369,10 @@ export function EnquiryForm() {
                     : "Enquiry received. The workflow ran."}
                 </h3>
                 {alertSent ? (
-                  <p className="mt-3 text-sm leading-relaxed text-copy">
-                    The agent scored your enquiry, detected its language and script, logged the row,
-                    and sent the staff alert — the workflow answers with the id of that alert email,
-                    which is why you see a message id below rather than the score. The score itself
-                    lands in the Google Sheet alongside the detected language.
+                  <p className="mt-3 text-sm leading-relaxed text-copy-muted">
+                    Scored, language detected, row logged, alert sent. The workflow answers with the
+                    id of that alert email, so you see a message id here. The score is in the Google
+                    Sheet.
                   </p>
                 ) : null}
                 {hasSummary ? (
@@ -449,10 +446,9 @@ export function EnquiryForm() {
               <div className="card h-full border-edge bg-raised">
                 <p className="kicker text-neon">Could not score</p>
                 <h3 className="mt-3 text-xl">Something went wrong on the way to the workflow.</h3>
-                <p className="mt-3 text-sm leading-relaxed text-copy">{errorMsg}</p>
-                <p className="mt-3 text-sm leading-relaxed text-copy">
-                  This is a student demo, so it can be down. For a real appointment, call the clinic
-                  toll free on{" "}
+                <p className="mt-3 text-sm leading-relaxed text-copy-muted">{errorMsg}</p>
+                <p className="mt-3 text-sm leading-relaxed text-copy-muted">
+                  This is a student demo, so it can be down. For a real appointment call{" "}
                   <a
                     href={CLINIC.tollFreeHref}
                     className="font-medium underline underline-offset-2"

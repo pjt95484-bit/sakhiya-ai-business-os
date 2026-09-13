@@ -12,11 +12,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        base: {
-          DEFAULT: token("--bg-base-rgb"),
-          // Alias used where dark text must sit on a neon fill (the primary CTA).
-          900: token("--bg-base-rgb"),
-        },
+        // Named "ground", not "base": a colour named base would collide with
+        // Tailwind's built-in text-base font-size utility.
+        ground: token("--bg-base-rgb"),
         surface: token("--bg-surface-rgb"),
         raised: token("--bg-raised-rgb"),
         neon: {

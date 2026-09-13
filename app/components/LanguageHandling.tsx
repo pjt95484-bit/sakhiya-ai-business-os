@@ -12,8 +12,8 @@ export function LanguageHandling() {
         <SectionHeading
           kicker="08 — Language handling"
           id="language-title"
-          title="Language and script are two separate decisions."
-          lede="A Surat patient can write Gujarati in Gujarati letters or in Roman letters. Most systems collapse both into “Hindi” and reply wrong. This one detects the language first, the script second, and replies in the same pair."
+          title="Language and script are two different questions."
+          lede="Meera writes Gujarati using English letters. Most systems collapse that into Hindi. This one answers her in the same pair she used."
         />
 
         <div className="section-body table-wrap">
@@ -53,11 +53,10 @@ export function LanguageHandling() {
               What the patient actually typed beats whatever they selected in a dropdown.
             </p>
           </div>
-          <p className="max-w-measure text-sm leading-relaxed text-copy">
-            In live tests the dropdown said English and the message was Roman-script Gujarati. The
-            system followed the message: execution run #32 scored it 90, marked it Hot, and detected
-            Gujarati / Roman with the evidence &ldquo;mane, karvani chhe&rdquo;. The staff alert
-            named Gujarati as the language to call in.
+          <p className="max-w-measure text-sm leading-relaxed text-copy-muted">
+            In run #32 the dropdown said English and the message was Gujarati in English letters.
+            The system followed the message: score 90, Hot, detected Gujarati / Roman on the
+            evidence &ldquo;mane, karvani chhe&rdquo;. The alert told staff to call in Gujarati.
           </p>
         </div>
       </div>

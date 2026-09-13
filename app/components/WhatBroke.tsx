@@ -9,7 +9,7 @@ function WithCode({ text }: { text: string }) {
         CODE.test(part) && part.length > 1 ? (
           <code
             key={i}
-            className="rounded border border-edge bg-base px-1.5 py-0.5 font-mono text-[0.85em] text-neon"
+            className="rounded border border-edge bg-ground px-1.5 py-0.5 font-mono text-[0.85em] text-neon"
           >
             {part}
           </code>
@@ -45,7 +45,7 @@ export function WhatBroke() {
           </p>
         </header>
 
-        <ol className="section-body overflow-hidden rounded-xl border border-edge bg-base">
+        <ol className="section-body overflow-hidden rounded-xl border border-edge bg-ground">
           {FAILURES.map((f, i) => (
             <li
               key={i}
