@@ -3,15 +3,58 @@
  * turn comes from sakhiyaskinclinic.com. Do not add facts that are not there.
  */
 
-export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://sakhiya-ai-business-os.vercel.app"
-).replace(/\/$/, "");
+/** Last-resort site origin. Must stay a valid absolute URL literal. */
+const DEFAULT_SITE_URL = "https://sakhiya-ai-business-os.vercel.app";
 
-export const ELEVENLABS_AGENT_ID =
-  process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID ?? "agent_2801m2ab2k9yezktg6djp7c0pebm";
+/**
+ * Resolve the canonical origin from the first usable candidate.
+ *
+ * `??` alone is not enough: it only falls back on null/undefined, so an env
+ * var that is *defined but empty* (which is how Vercel stores a variable added
+ * with a blank value) passes straight through. `new URL("")` then throws
+ * ERR_INVALID_URL and the build dies collecting page data. Every candidate is
+ * therefore trimmed, emptiness-checked, and parsed before it is trusted.
+ */
+function resolveSiteUrl(...candidates: (string | undefined)[]): string {
+  for (const candidate of candidates) {
+    const trimmed = candidate?.trim();
+    if (!trimmed) continue;
+    // Vercel's *_URL system vars carry no protocol.
+    const withProtocol = /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+    try {
+      const parsed = new URL(withProtocol);
+      if (!parsed.hostname) continue;
+      return `${parsed.origin}${parsed.pathname}`.replace(/\/$/, "");
+    } catch {
+      // Not a usable URL — try the next candidate.
+    }
+  }
+  return DEFAULT_SITE_URL;
+}
 
-export const N8N_LEAD_WEBHOOK =
-  process.env.NEXT_PUBLIC_N8N_LEAD_WEBHOOK ?? "https://pjt90112.app.n8n.cloud/webhook/sakhiya-lead";
+// Each env var is referenced as a literal member expression so Next can inline
+// it at build time; a computed lookup would not be replaced.
+export const SITE_URL = resolveSiteUrl(
+  process.env.NEXT_PUBLIC_SITE_URL,
+  process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL,
+  process.env.NEXT_PUBLIC_VERCEL_URL,
+  DEFAULT_SITE_URL,
+);
+
+function resolveNonEmpty(value: string | undefined, fallback: string): string {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : fallback;
+}
+
+export const ELEVENLABS_AGENT_ID = resolveNonEmpty(
+  process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID,
+  "agent_2801m2ab2k9yezktg6djp7c0pebm",
+);
+
+export const N8N_LEAD_WEBHOOK = resolveNonEmpty(
+  process.env.NEXT_PUBLIC_N8N_LEAD_WEBHOOK,
+  "https://pjt90112.app.n8n.cloud/webhook/sakhiya-lead",
+);
 
 export const ELEVENLABS_TALK_URL = `https://elevenlabs.io/app/talk-to?agent_id=${ELEVENLABS_AGENT_ID}`;
 
