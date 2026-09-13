@@ -50,7 +50,7 @@ export function Evidence() {
           </table>
         </div>
 
-        <dl className="mt-8 grid max-w-md grid-cols-2 gap-4">
+        <dl className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-4">
           <div className="card">
             <dt className="text-xs uppercase tracking-wider text-copy-muted">Conversations</dt>
             <dd className="mt-1 text-4xl">{ASSISTANT_STATS.conversations}</dd>

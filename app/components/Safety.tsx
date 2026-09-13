@@ -34,34 +34,34 @@ export function Safety() {
         <div className="section-body grid gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
           <ol className="divide-y divide-edge rounded-xl border border-edge bg-surface">
             {SAFETY_RULES.map((rule, i) => (
-              <li key={rule} className="grid grid-cols-[3rem_1fr] gap-3 px-5 py-4">
-                <span className="font-mono text-sm text-neon">
+              <li key={rule} className="grid grid-cols-[3.5rem_1fr] gap-4 px-6 py-6">
+                <span className="font-mono text-base text-neon">
                   R{String(i + 1).padStart(2, "0")}
                 </span>
-                <p className="text-sm leading-relaxed text-copy">{rule}</p>
+                <p className="text-[1.0625rem] leading-relaxed text-copy">{rule}</p>
               </li>
             ))}
           </ol>
 
           <div>
-            <h3 className="text-xl">Three layers</h3>
+            <h3 className="text-2xl">Three layers</h3>
             <dl className="mt-4">
               {LAYERS.map((l, i) => (
                 <div key={l.name} className="mt-4 first:mt-0">
-                  <dt className="font-medium text-copy">
-                    <span className="mr-2 font-mono text-sm font-normal text-copy-muted">
+                  <dt className="text-lg font-semibold text-copy">
+                    <span className="mr-2.5 font-mono text-base font-normal text-neon">
                       {i + 1}
                     </span>
                     {l.name}
                   </dt>
-                  <dd className="mt-0.5 pl-6 text-sm leading-relaxed text-copy">{l.body}</dd>
+                  <dd className="mt-1 pl-7 leading-relaxed text-copy-muted">{l.body}</dd>
                 </div>
               ))}
             </dl>
 
             <aside className="mt-8 rounded-xl border border-edge bg-raised p-5">
               <p className="kicker text-neon">One toggle left off, deliberately</p>
-              <p className="mt-2 text-sm leading-relaxed text-copy">
+              <p className="mt-2.5 leading-relaxed text-copy">
                 The platform&rsquo;s medical/legal content guardrail was left <strong>off</strong>,
                 because switching it on would block the clinic&rsquo;s own subject matter. Turning a
                 safety toggle on without reading it would have broken the product.

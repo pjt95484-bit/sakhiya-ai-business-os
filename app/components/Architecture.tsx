@@ -257,7 +257,7 @@ export function Architecture() {
         <figure className="section-body rounded-xl border border-edge bg-ground p-4 sm:p-8">
           <Diagram
             layout={wide}
-            className="mx-auto hidden w-full max-w-[45rem] sm:block"
+            className="mx-auto hidden w-full max-w-[58rem] sm:block"
             titleId="arch-wide"
           />
           <Diagram

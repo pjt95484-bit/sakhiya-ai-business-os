@@ -10,11 +10,11 @@ export function Faq() {
     >
       <div className="container-site">
         <SectionHeading kicker="13 — Questions" id="faq-title" title="Questions" />
-        <div className="section-body max-w-measure divide-y divide-edge border-y border-edge">
+        <div className="section-body grid gap-x-14 border-t border-edge lg:grid-cols-2">
           {FAQ.map((item) => (
-            <details key={item.q} className="group py-4">
+            <details key={item.q} className="group border-b border-edge py-5">
               <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-left font-medium text-copy [&::-webkit-details-marker]:hidden">
-                <h3 className="font-sans text-base font-medium tracking-normal">{item.q}</h3>
+                <h3 className="font-sans text-xl font-bold">{item.q}</h3>
                 <span
                   aria-hidden="true"
                   className="mt-1 font-mono text-copy-muted group-open:hidden"
@@ -28,7 +28,7 @@ export function Faq() {
                   −
                 </span>
               </summary>
-              <p className="mt-3 max-w-measure text-sm leading-relaxed text-copy">{item.a}</p>
+              <p className="mt-3 leading-relaxed text-copy-muted">{item.a}</p>
             </details>
           ))}
         </div>
